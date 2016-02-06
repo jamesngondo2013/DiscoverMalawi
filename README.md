@@ -1,1 +1,1 @@
-# DiscoverMalawi
+# Discover Malawi
