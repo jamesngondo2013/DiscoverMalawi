@@ -1,0 +1,48 @@
+{
+
+  "places": [
+    {
+      "bio": "Barot has just finished his final year at The Royal Academy of Painting and Sculpture, where he excelled in glass etching paintings and portraiture. Hailed as one of the most diverse artists of his generation, Barot is equally as skilled with watercolors as he is with oils, and is just as well-balanced in different subject areas. Barot's collection entitled 'The Un-Collection' will adorn the walls of Gilbert Hall, depicting his range of skills and sensibilities - all of them, uniquely Barot, yet undeniably different",
+      "shortname": "watersports",
+      "name": "Water Sports",
+      "reknown": "Lake Malawi"
+    },
+	{
+      "bio": "As a body of fresh water, Lake Malawi has a high alkalinity and exceedingly high proportion of endemic fish - mostly of the cichlid family. This means that although Malawi is land-locked, it offers some of the best freshwater diving and snorkelling in Africa. Lake Malawi belongs to the African Great Lakes and is the southernmost lake in the Great Rift Valley system of East Africa. It's the second deepest lake and the third largest lake in Africa - located between Malawi, Mozambique, and Tanzania - so there's plenty of space for diving and snorkelling! Lake Malawi probably hosts the largest number of fish species of any lake in Africa. Most of these endemic fish belong to the cichlidae family and are known locally as nbuma. These are often small and brightly coloured - and so are very attractive as pets for aquarists, as well as for travellers who are diving and snorkelling in Malawi. Lake Malawi offers many types of habitat and often these niches are filled with individual species of specially-adapted fish. About 30% of the lake is rocky. Due to the water's high alkalinity, there are few plants and relatively little organic material. This means that there's often very good visibility above the sandy and rocky bottom of the lake, so it's often possible to see fish clearly in all of their beauty.",
+      "shortname": "snorkeling",
+      "name": "Diving and Snorkelling",
+      "reknown": "Lake Malawi"
+    },
+	{
+      "bio": "Hillary is a sophomore art sculpture student at New York University, and has already won all the major international prizes for new sculptors, including the Divinity Circle, the International Sculptor's Medal, and the Academy of Paris Award. Hillary's CAC exhibit features 25 abstract watercolor paintings that contain only water images including waves, deep sea, and river.",
+      "shortname": "rockclimbing",
+      "name": "Rock Climbing",
+      "reknown": "Central Malawi"
+    },
+	{
+      "bio": "Lake of Stars is an internationally renowned music festival that takes place on the palm fringed shores of Lake Malawi each year. Traditionally, and as with this year's event, the festival has always been on the lake. In 2013 however, celebrating it's tenth anniversary (though 9th festival), it went inland, with a colourful and inspiring weekend long show in the heart of Malawi's capital - Lilongwe. With multi-venues, artists from around the world, new and emerging bands, and rising Malawian talent it was a brilliant event, setting a new expectation as an international acclaimed event that no doubt this year will top. Back on the water the magic of Malawi's 'Lake of Stars' will again emerge as songs, dance, culture and art travels from across the globe to perform in one of Africa's most diverse festivals. If you would like to get attend this year's show please go to the Lake of Stars booking system.",
+      "shortname": "lakeofstars",
+      "name": "Musical Arts Festival Event",
+      "reknown": "Lake Malawi"
+    },
+	{
+      "bio": "Many African countries claim to be a birdwatcher’s paradise but Malawi’s credentials in this field are especially impressive. Around six hundred and fifty different species have been identified with ten per cent not being seen in other parts of southern Africa. Rather more than eighty per cent of the recorded species breed in the country while the remainder are migratory, mostly from Europe with some from Asia. Lake Malawi attracts a number of birds which favour either the water and islands or the particular vegetation of the shorelands. Pride of place must be given to the African fish eagle, Malawi’s national bird. There are more concentrations of fish eagles here than anywhere else in the world. This magnificent bird, which has a black body with white head, neck and tail feathers, is easily spotted as it dives to take fish from just under the surface of the waters. If not seen, its loud cry will be heard as it perches on a waterside tree or skims over the lake.",
+      "shortname": "birdwatching",
+      "name": "Bird Watching",
+      "reknown": "Lake Malawi"
+    },
+	{
+      "bio": "Manda Wilderness Dug-Out Canoe Race - April.",
+      "shortname": "mandawilderness",
+      "name": "Dug-Out Canoe Race",
+      "reknown": "Lake Malawi"
+    },
+	{
+      "bio": "Hillary is a sophomore art sculpture student at New York University, and has already won all the major international prizes for new sculptors, including the Divinity Circle, the International Sculptor's Medal, and the Academy of Paris Award. Hillary's CAC exhibit features 25 abstract watercolor paintings that contain only water images including waves, deep sea, and river.",
+      "shortname": "rockclimbing",
+      "name": "Rock Climbing",
+      "reknown": "Mulanje Massif"
+    }
+
+  ]
+}

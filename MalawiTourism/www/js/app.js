@@ -44,6 +44,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  //lake activities
+  $stateProvider.state('lakeActivitiesList', {
+    url: '/lakeActivitiesList',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/lakeActivitiesList.html',
+        controller: 'LakeActivitiesListController'
+      }
+    }
+  })
+
+  $stateProvider.state('detailsLakeActivities', {
+    url: '/lakeActivitiesList/:aId',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/detailsLakeActivities.html',
+        controller: 'LakeActivitiesListController'
+      }
+    }
+  })
+
   //settings
   $stateProvider.state('settings', {
     url: '/settings',
@@ -508,6 +529,38 @@ app.controller('ParksReservesListController', ['$scope', '$http', '$state',
 
       $scope.doRefresh =function() {
       $http.get('js/data.json').success(function(data) {
+          $scope.places = data;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+      }
+
+      $scope.toggleStar = function(item) {
+        item.star = !item.star;
+      }
+
+
+      $scope.moveItem = function(item, fromIndex, toIndex) {
+        $scope.places.splice(fromIndex, 1);
+        $scope.places.splice(toIndex, 0, item);
+        //NoteStore.move(note, fromIndex, toIndex);
+      };
+    });
+}]);
+
+//=============================Lake Activities List Controller=============
+app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
+    function($scope, $http, $state) {
+    $http.get('js/lakeactivities.json').success(function(data) {
+      $scope.places = data.places;
+      $scope.whichplace=$state.params.aId;
+      $scope.data = { showDelete: false, showReorder: false };
+
+      $scope.onItemDelete = function(item) {
+        $scope.places.splice($scope.places.indexOf(item), 1);
+      }
+
+      $scope.doRefresh =function() {
+      $http.get('js/lakeactivities.json').success(function(data) {
           $scope.places = data;
           $scope.$broadcast('scroll.refreshComplete');
         });
