@@ -1,0 +1,14 @@
+<ion-view title="More Info">
+  <ion-content>
+    <ion-list class="list-inset">
+      <ion-item class="item-text-wrap"
+        ng-repeat="item in places | filter: { shortname: whichplace }">
+          <img ng-src="img/{{item.shortname}}_nt.jpg"
+            alt="{{ item.name }} Photo">
+          <h3>{{ item.name }}</h3>
+          <h2>{{ item.reknown }}</h2>
+          <p>{{ item.bio }}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
