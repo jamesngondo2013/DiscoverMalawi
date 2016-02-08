@@ -560,7 +560,7 @@ app.controller('MapCtrl', function($scope, $state,$compile) {
 app.controller('ParksReservesListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
     $http.get('js/data.json').success(function(data) {
-      $scope.places = data.places;
+      $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
 
@@ -592,7 +592,7 @@ app.controller('ParksReservesListController', ['$scope', '$http', '$state',
 app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
     $http.get('js/lakeactivities.json').success(function(data) {
-      $scope.places = data.places;
+      $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
 
@@ -624,7 +624,7 @@ app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
 app.controller('MountainListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
     $http.get('js/mountainsplateaus.json').success(function(data) {
-      $scope.places = data.places;
+      $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
 
@@ -656,7 +656,7 @@ app.controller('MountainListController', ['$scope', '$http', '$state',
 app.controller('MonumentListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
     $http.get('js/historicalsites.json').success(function(data) {
-      $scope.places = data.places;
+      $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
 
