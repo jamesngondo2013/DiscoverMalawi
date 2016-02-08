@@ -65,6 +65,47 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  //moutains and plateaus
+  $stateProvider.state('mountainList', {
+    url: '/mountainList',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/mountainList.html',
+        controller: 'MountainListController'
+      }
+    }
+  })
+
+  $stateProvider.state('detailsmountain', {
+    url: '/mountainList/:aId',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/detailsmountain.html',
+        controller: 'MountainListController'
+      }
+    }
+  })
+
+  //monuments
+  $stateProvider.state('monumentList', {
+    url: '/monumentList',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/monumentList.html',
+        controller: 'MonumentListController'
+      }
+    }
+  })
+
+  $stateProvider.state('detailsmonuments', {
+    url: '/monumentList/:aId',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/detailsmonuments.html',
+        controller: 'MonumentListController'
+      }
+    }
+  })
   //settings
   $stateProvider.state('settings', {
     url: '/settings',
@@ -578,6 +619,71 @@ app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
       };
     });
 }]);
+
+//=============================Mountains List Controller=============
+app.controller('MountainListController', ['$scope', '$http', '$state',
+    function($scope, $http, $state) {
+    $http.get('js/mountainsplateaus.json').success(function(data) {
+      $scope.places = data.places;
+      $scope.whichplace=$state.params.aId;
+      $scope.data = { showDelete: false, showReorder: false };
+
+      $scope.onItemDelete = function(item) {
+        $scope.places.splice($scope.places.indexOf(item), 1);
+      }
+
+      $scope.doRefresh =function() {
+      $http.get('js/mountainsplateaus.json').success(function(data) {
+          $scope.places = data;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+      }
+
+      $scope.toggleStar = function(item) {
+        item.star = !item.star;
+      }
+
+
+      $scope.moveItem = function(item, fromIndex, toIndex) {
+        $scope.places.splice(fromIndex, 1);
+        $scope.places.splice(toIndex, 0, item);
+        //NoteStore.move(note, fromIndex, toIndex);
+      };
+    });
+}]);
+
+//=============================Monuments History=============
+app.controller('MonumentListController', ['$scope', '$http', '$state',
+    function($scope, $http, $state) {
+    $http.get('js/historicalsites.json').success(function(data) {
+      $scope.places = data.places;
+      $scope.whichplace=$state.params.aId;
+      $scope.data = { showDelete: false, showReorder: false };
+
+      $scope.onItemDelete = function(item) {
+        $scope.places.splice($scope.places.indexOf(item), 1);
+      }
+
+      $scope.doRefresh =function() {
+      $http.get('js/historicalsites.json').success(function(data) {
+          $scope.places = data;
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+      }
+
+      $scope.toggleStar = function(item) {
+        item.star = !item.star;
+      }
+
+
+      $scope.moveItem = function(item, fromIndex, toIndex) {
+        $scope.places.splice(fromIndex, 1);
+        $scope.places.splice(toIndex, 0, item);
+        //NoteStore.move(note, fromIndex, toIndex);
+      };
+    });
+}]);
+
 
 //==================================================================
 

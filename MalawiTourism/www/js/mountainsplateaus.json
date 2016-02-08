@@ -24,6 +24,18 @@
       "shortname": "nyika",
       "name": "Nyika Plateau",
       "reknown": "North Malawi"
+    },
+	{
+      "bio": "The forested Viphya is a wonderful area for those seeking a combination of stunning scenery and solitude. It is an ideal area to unwind but there are also opportunities for trekking, mountain biking and various other activities. A centre for a range of activity holidays is the beautifully sited Luwawa Forest Lodge.",
+      "shortname": "viphyaplateau",
+      "name": "Viphya Plateau",
+      "reknown": "North Malawi"
+    },
+	{
+      "bio": "Hillary is a sophomore art sculpture student at New York University, and has already won all the major international prizes for new sculptors, including the Divinity Circle, the International Sculptor's Medal, and the Academy of Paris Award. Hillary's CAC exhibit features 25 abstract watercolor paintings that contain only water images including waves, deep sea, and river.",
+      "shortname": "rockclimbing",
+      "name": "Rock Climbing",
+      "reknown": "Central Malawi"
     }
   ]
 }

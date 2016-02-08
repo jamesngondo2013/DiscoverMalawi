@@ -1,4 +1,4 @@
-<ion-view view-title="Activities and Adventure">
+<ion-view view-title="Historical Sites and Monuments">
 
   <ion-nav-buttons side="secondary">
     <button
@@ -23,7 +23,7 @@
     <ion-item ng-class="{'star': item.star}"
     ng-repeat='item in places | filter: query'
     class="item-thumbnail-left item-icon-right
-      item-text-wrap" href="#/lakeActivitiesList/{{item.shortname}}">
+      item-text-wrap" href="#/monumentList/{{item.shortname}}">
       <img ng-src="img/{{item.shortname}}_nt.jpg"
         alt="{{ item.name }} Photo">
       <h3>{{item.name}}</h3>

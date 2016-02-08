@@ -3,28 +3,23 @@
   "places": [
     {
       "bio": "Barot has just finished his final year at The Royal Academy of Painting and Sculpture, where he excelled in glass etching paintings and portraiture. Hailed as one of the most diverse artists of his generation, Barot is equally as skilled with watercolors as he is with oils, and is just as well-balanced in different subject areas. Barot's collection entitled 'The Un-Collection' will adorn the walls of Gilbert Hall, depicting his range of skills and sensibilities - all of them, uniquely Barot, yet undeniably different",
-      "shortname": "StMichaels",
+      "shortname": "stMichaels",
       "name": "St Michaels and all Angels Church",
       "reknown": "City of Blantyre"
     },
 	{
-      "bio": "This, the world’s first freshwater national park and a World Heritage Site, is at Cape Maclear. The park includes a land area around the cape and bay as well as the Lake and islands up to 100 metres (330ft) off shore. Here is a veritable aquarium of tropical fish providing a colourful kaleidoscopic display. The countless thousands of freshwater fish, the mbuna, are more abundant and varied here than anywhere else in the world. Boats are available for hire and the fish will feed directly from the hand. Away from the Lake, the park has baboons, antelope and hyrax, and, of course, there is a great variety of birdlife including fish eagles, cormorants and hamerkops. Excellent up-market operations at Cape Maclear combine accommodation with lake activities. Danforth Yachting have a lakeside lodge as well as a 38ft catamaran; while Mumbo Island and Domwe Island camps offer idyllic island getaways. Around the headland, but within the National Park is the most upmarket lodge - Pumulani, Robin Pope Safaris. Slightly further south along the lake, Norman Carr Cottage also provides a lovely lakeside option for accommodation. The Lake Malawi National Park also covers the Marelli Islands further north than Cape Maclear. Accessed via Salima/Senga Bay these islands are now exclusively home to the luxury Blue Zebra Island Lodge.",
+      "bio": "A particularly interesting place to visit is the Livingstonia Mission. Sited high above Lake Malawi at 3000ft (900m) there are views of incredible beauty across the lake to Tanzania. Livingstonia is a mission settlement dating from 1894 and established by Robert Laws a disciple of David Livingstone. The Old Stone House, which was the home of the Laws family, is now a resthouse and museum. International standard accommodation can be found down on the lakeshore at Sangilo Sanctuary Lodge. Perched atop the high surrounding cliffs and within walking distance from Livingstonia is The Mushroom Farm, an eco-lodge perfectly designed to blend in with it's surroundings and providing a great base from which to explore the area.",
       "shortname": "livingstonia",
       "name": "Livingstonia Mission",
       "reknown": "North Malawi"
     },
 	{
-      "bio": "Hillary is a sophomore art sculpture student at New York University, and has already won all the major international prizes for new sculptors, including the Divinity Circle, the International Sculptor's Medal, and the Academy of Paris Award. Hillary's CAC exhibit features 25 abstract watercolor paintings that contain only water images including waves, deep sea, and river.",
-      "shortname": "rockclimbing",
-      "name": "Rock Climbing",
-      "reknown": "Central Malawi"
-    },
-	{
-      "bio": "Although only 220 sq miles (580 sq km), Liwonde is perhaps the most popular of all the game parks. It is about 100 miles (160 km) north of Blantyre and only rather more than half that distance from the hotels on the southern Lakeshore. Additionally, game viewing is enhanced because the River Shire flows along its western border, allowing boat safaris as well as the usual ones on foot or in 4x4s. Wildlife includes quite large numbers of elephants and the river attracts countless hippos and crocodiles. Antelope include kudu, sable and bushbuck. There are leopards and hyeana and the occassional visiting lion. Black rhino has been re-introduced. Birdlife is exceptionally varied. The river attracts fish eagles and weaver birds build their nests in the thin woodland. Pel’s fishing owl is often seen at dusk along the river’s edge. Accommodation is first-class with the luxury Mvuu Lodge and nearby Mvuu Camp as well as a camp site, all along the Shire’s bank and well inside the park. To reach the riverside lodge, visitors can approach by road and then be ferried across the river, they can drive through the park or they can use a pre-arranged boat from Liwonde town. There is also an airstrip near the lodge, served by charter flights.",
-      "shortname": "cycling",
-      "name": "Cycling",
-      "reknown": "South Malawi"
+      "bio": "A particularly interesting place to visit is the Livingstonia Mission. Sited high above Lake Malawi at 3000ft (900m) there are views of incredible beauty across the lake to Tanzania. Livingstonia is a mission settlement dating from 1894 and established by Robert Laws a disciple of David Livingstone. The Old Stone House, which was the home of the Laws family, is now a resthouse and museum. International standard accommodation can be found down on the lakeshore at Sangilo Sanctuary Lodge. Perched atop the high surrounding cliffs and within walking distance from Livingstonia is The Mushroom Farm, an eco-lodge perfectly designed to blend in with it's surroundings and providing a great base from which to explore the area.",
+      "shortname": "kamuzubandamausoleum",
+      "name": "Kamuzu Banda Mausoleum",
+      "reknown": "Capital City, Lilongwe"
     }
+	
 
   ]
 }
