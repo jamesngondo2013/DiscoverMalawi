@@ -559,7 +559,7 @@ app.controller('MapCtrl', function($scope, $state,$compile) {
 //=============================Parks & Reserves List Controller=============
 app.controller('ParksReservesListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
-    $http.get('js/data.json').success(function(data) {
+    $http.get('http://localhost:3000/nationalparks').success(function(data) {
       $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
@@ -569,7 +569,7 @@ app.controller('ParksReservesListController', ['$scope', '$http', '$state',
       }
 
       $scope.doRefresh =function() {
-      $http.get('js/data.json').success(function(data) {
+      $http.get('http://localhost:3000/nationalparks').success(function(data) {
           $scope.places = data;
           $scope.$broadcast('scroll.refreshComplete');
         });
@@ -591,7 +591,7 @@ app.controller('ParksReservesListController', ['$scope', '$http', '$state',
 //=============================Lake Activities List Controller=============
 app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
-    $http.get('js/lakeactivities.json').success(function(data) {
+    $http.get('http://localhost:3000/lakemalawi').success(function(data) {
       $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
@@ -601,7 +601,7 @@ app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
       }
 
       $scope.doRefresh =function() {
-      $http.get('js/lakeactivities.json').success(function(data) {
+      $http.get('http://localhost:3000/lakemalawi').success(function(data) {
           $scope.places = data;
           $scope.$broadcast('scroll.refreshComplete');
         });
@@ -623,7 +623,7 @@ app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
 //=============================Mountains List Controller=============
 app.controller('MountainListController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
-    $http.get('js/mountainsplateaus.json').success(function(data) {
+    $http.get('http://localhost:3000/mountains').success(function(data) {
       $scope.places = data;
       $scope.whichplace=$state.params.aId;
       $scope.data = { showDelete: false, showReorder: false };
@@ -633,7 +633,7 @@ app.controller('MountainListController', ['$scope', '$http', '$state',
       }
 
       $scope.doRefresh =function() {
-      $http.get('js/mountainsplateaus.json').success(function(data) {
+      $http.get('http://localhost:3000/mountains').success(function(data) {
           $scope.places = data;
           $scope.$broadcast('scroll.refreshComplete');
         });
