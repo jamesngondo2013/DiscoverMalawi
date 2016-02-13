@@ -1,46 +1,29 @@
-<ion-view view-title="Activities and Adventure">
-
-  <ion-nav-buttons side="secondary">
-    <button
-      class="button button-icon ion-navicon"
-      ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
-    </button>
-  </ion-nav-buttons>
-
-<div class="item-input-inset bar bar-light">
-  <label class="item-input-wrapper">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="search" ng-model="query" placeholder="Search">
-  </label>
-</div>
+<ion-view view-title="Lake Activities">
 <!--content-->
 <ion-content
   class="has-subheader">
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
-  <ion-list
-    show-reorder="data.showReorder">
-    <ion-item ng-class="{'star': item.star}"
-    ng-repeat='item in places | filter: query'
+  <ion-list show-reorder="alllakes.showReorder">
+    <ion-item ng-class="{'star': myLake.star}"
+    ng-repeat='myLake in alllakes | filter: query'
     class="item-thumbnail-left item-icon-right
-      item-text-wrap" href="#/lakeActivitiesList/{{item.shortname}}">
-      <img ng-src="img/{{item.shortname}}_nt.jpg"
-        alt="{{ item.name }} Photo">
-      <h3>{{item.name}}</h3>
-      <h2>{{item.reknown}}</h2>
-      <p>{{item.bio | limitTo: 100}}
-      {{ item.bio.length > 150 ? '&hellip;' : '' }}</p>
+      item-text-wrap" href="#/detailsLakeActivities/{{myLake.$id}}">
+      <img ng-src="{{myLake.image}}" alt="Photo">
+      <h3>{{myLake.name}}</h3>
+      <h2>{{myLake.reknown}}</h2>
+      <p>{{myLake.bio | limitTo: 100}}
+      {{ myLake.bio.length > 150 ? '&hellip;' : '' }}</p>
       <button class="button button-clear icon ion-star button-assertive"
-        ng-click="toggleStar(item)"
-        ng-show="item.star"></button>
+        ng-click="toggleStar(myLake)"
+        ng-show="myLake.star"></button>
       <ion-option-button class="button-dark"
-        ng-click="toggleStar(item)">
+        ng-click="toggleStar(myLake)">
         <i class="icon ion-star"></i>
       </ion-option-button>
-      <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
-      </ion-delete-button>
+
       <ion-reorder-button class="ion-navicon"
-        on-reorder="moveItem(item, $fromIndex, $toIndex)">
+        on-reorder="moveItem(myLake, $fromIndex, $toIndex)">
       </ion-reorder-button>
     </ion-item>
   </ion-list>

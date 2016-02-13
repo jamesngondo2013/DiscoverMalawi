@@ -1,0 +1,31 @@
+<ion-view view-title="Cities">
+<!--content-->
+<ion-content
+  class="has-subheader">
+  <ion-refresher on-refresh="doRefresh()">
+  </ion-refresher>
+  <ion-list show-reorder="myCity.showReorder">
+    <ion-item ng-class="{'star': myCity.star}"
+    ng-repeat='myCity in allcities | filter: query'
+    class="item-thumbnail-left item-icon-right
+      item-text-wrap" href="#/citiesDetails/{{myCity.$id}}">
+      <img ng-src="{{myCity.image}}" alt="Photo">
+      <h3>{{myCity.name}}</h3>
+      <h2>{{myCity.reknown}}</h2>
+      <p>{{myCity.bio | limitTo: 100}}
+      {{ myCity.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <button class="button button-clear icon ion-star button-assertive"
+        ng-click="toggleStar(myCity)"
+        ng-show="myCity.star"></button>
+      <ion-option-button class="button-dark"
+        ng-click="toggleStar(myCity)">
+        <i class="icon ion-star"></i>
+      </ion-option-button>
+
+      <ion-reorder-button class="ion-navicon"
+        on-reorder="moveItem(myCity, $fromIndex, $toIndex)">
+      </ion-reorder-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+</ion-view>

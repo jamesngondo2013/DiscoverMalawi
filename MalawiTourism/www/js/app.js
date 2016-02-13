@@ -6,9 +6,10 @@
 (function(){
 
 
-var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase']);
+  var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase']);
 
-var fb = new Firebase("https://shining-torch-8813.firebaseio.com/");
+  var fb = new Firebase("https://shining-torch-8813.firebaseio.com/");
+  var ref = new Firebase("https://discovermalawi.firebaseio.com/");
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -24,25 +25,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   //parks and reserves states
-  $stateProvider.state('parksReservesList', {
-    url: '/parksReservesList',
-    views: {
-      'tab-home' : {
-        templateUrl: 'templates/parksReservesList.html',
-        controller: 'ParksReservesListController'
-      }
-    }
-  })
+   $stateProvider.state('parksReservesList', {
+     url: '/parksReservesList',
+     views: {
+       'tab-home' : {
+         templateUrl: 'templates/parksReservesList.html',
+         controller: 'ParksReserveList'
+       }
+     }
+   })
 
-  $stateProvider.state('detail', {
-    url: '/parksReservesList/:aId',
-    views: {
-      'tab-home' : {
-        templateUrl: 'templates/detail.html',
-        controller: 'ParksReservesListController'
-      }
-    }
-  })
+   //details states
+   $stateProvider.state('detail', {
+     url: '/detail/:id',
+     views: {
+       'tab-home' : {
+         templateUrl: 'templates/detail.html',
+         controller: 'DetailsCtrl'
+       }
+     }
+   })
 
   //lake activities
   $stateProvider.state('lakeActivitiesList', {
@@ -56,14 +58,36 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   $stateProvider.state('detailsLakeActivities', {
-    url: '/lakeActivitiesList/:aId',
+    url: '/detailsLakeActivities/:id',
     views: {
       'tab-home' : {
         templateUrl: 'templates/detailsLakeActivities.html',
-        controller: 'LakeActivitiesListController'
+        controller: 'LakeDetailsCtrl'
       }
     }
   })
+
+  //events and adventures
+  $stateProvider.state('eventsList', {
+    url: '/eventsList',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/eventsList.html',
+        controller: 'EventsListController'
+      }
+    }
+  })
+
+  $stateProvider.state('eventsDetails', {
+    url: '/eventsDetails/:id',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/eventsDetails.html',
+        controller: 'EventsDetailsCtrl'
+      }
+    }
+  })
+
 
   //moutains and plateaus
   $stateProvider.state('mountainList', {
@@ -76,17 +100,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+//mountain details
   $stateProvider.state('detailsmountain', {
-    url: '/mountainList/:aId',
+    url: '/detailsmountain/:id',
     views: {
       'tab-home' : {
         templateUrl: 'templates/detailsmountain.html',
-        controller: 'MountainListController'
+        controller: 'DetailsMountainListController'
       }
     }
   })
 
-  //monuments
+  //historical details
+  $stateProvider.state('historicalsitesList', {
+    url: '/historicalsitesList',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/historicalsitesList.html',
+        controller: 'HistoryListController'
+      }
+    }
+  })
+
+
+  $stateProvider.state('historicalsitesDetails', {
+    url: '/historicalsitesDetails/:id',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/historicalsitesDetails.html',
+        controller: 'HistoryDetailsCtrl'
+      }
+    }
+  })
+
+
+  //monuments and history
   $stateProvider.state('monumentList', {
     url: '/monumentList',
     views: {
@@ -98,7 +146,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   $stateProvider.state('detailsmonuments', {
-    url: '/monumentList/:aId',
+    url: '/monumentList/:id',
     views: {
       'tab-home' : {
         templateUrl: 'templates/detailsmonuments.html',
@@ -106,16 +154,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  //settings
-  $stateProvider.state('settings', {
-    url: '/settings',
+
+  //cities
+  $stateProvider.state('citiesList', {
+    url: '/citiesList',
     views: {
-      'tab-settings': {
-        templateUrl: 'templates/settings.html'
+      'tab-home' : {
+        templateUrl: 'templates/citiesList.html',
+        controller: 'CityListController'
       }
     }
-
   })
+
+  $stateProvider.state('citiesDetails', {
+    url: '/citiesDetails/:id',
+    views: {
+      'tab-home' : {
+        templateUrl: 'templates/citiesDetails.html',
+        controller: 'CityDetailsCtrl'
+      }
+    }
+  })
+
 
   // maps
   $stateProvider.state('map', {
@@ -195,9 +255,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 })
 
 //=======================Factory for views sharing the same functions======
-app.factory('NoteStore', function(){
+app.factory('NoteStore', function($firebaseArray, $firebaseObject){
 
   var notes = angular.fromJson(  window.localStorage['notes'] ||'[]');
+
+
 
 // store notes in local storage
     function persist()
@@ -206,7 +268,68 @@ app.factory('NoteStore', function(){
     }
 
   return {
-    // list
+
+    //get all parks
+    getAllParks: function(){
+       return $firebaseArray(ref.child('park'));
+    },
+
+    //get individual park
+   getPark: function(parkId){
+       return $firebaseObject(ref.child('park').child(parkId));
+  },
+
+  //get all lake activites
+  getAllLakes: function(){
+     return $firebaseArray(ref.child('lake'));
+  },
+
+  //get individual lake activites
+  getLake: function(lakeId){
+     return $firebaseObject(ref.child('lake').child(lakeId));
+   },
+
+   //get all mountain activites
+   getAllMountains: function(){
+      return $firebaseArray(ref.child('mountains'));
+   },
+
+   //get individual mountain
+   getMountain: function(mountainId){
+      return $firebaseObject(ref.child('mountains').child(mountainId));
+    },
+
+    //get all event activites
+    getAllEvents: function(){
+       return $firebaseArray(ref.child('events'));
+    },
+
+    //get individual event
+    getEvent: function(eventsId){
+       return $firebaseObject(ref.child('events').child(eventsId));
+     },
+
+     //get all history
+     getAllHistory: function(){
+        return $firebaseArray(ref.child('historical'));
+     },
+
+     //get individual history
+     getHistory: function(historyId){
+        return $firebaseObject(ref.child('historical').child(historyId));
+      },
+
+      //get all cities
+      getAllCities: function(){
+         return $firebaseArray(ref.child('cities'));
+      },
+
+      //get individual cities
+      getCity: function(cityId){
+         return $firebaseObject(ref.child('cities').child(cityId));
+       },
+
+    // Notes list
     list: function(){
       return notes;
     },
@@ -556,135 +679,228 @@ app.controller('MapCtrl', function($scope, $state,$compile) {
      };
 });
 
-//=============================Parks & Reserves List Controller=============
-app.controller('ParksReservesListController', ['$scope', '$http', '$state',
-    function($scope, $http, $state) {
-    $http.get('http://localhost:3000/nationalparks').success(function(data) {
-      $scope.places = data;
-      $scope.whichplace=$state.params.aId;
-      $scope.data = { showDelete: false, showReorder: false };
-
-      $scope.onItemDelete = function(item) {
-        $scope.places.splice($scope.places.indexOf(item), 1);
-      }
-
-      $scope.doRefresh =function() {
-      $http.get('http://localhost:3000/nationalparks').success(function(data) {
-          $scope.places = data;
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-      }
-
-      $scope.toggleStar = function(item) {
-        item.star = !item.star;
-      }
-
-
-      $scope.moveItem = function(item, fromIndex, toIndex) {
-        $scope.places.splice(fromIndex, 1);
-        $scope.places.splice(toIndex, 0, item);
-        //NoteStore.move(note, fromIndex, toIndex);
-      };
-    });
-}]);
-
 //=============================Lake Activities List Controller=============
-app.controller('LakeActivitiesListController', ['$scope', '$http', '$state',
-    function($scope, $http, $state) {
-    $http.get('http://localhost:3000/lakemalawi').success(function(data) {
-      $scope.places = data;
-      $scope.whichplace=$state.params.aId;
-      $scope.data = { showDelete: false, showReorder: false };
+app.controller('LakeActivitiesListController', function($scope, NoteStore) {
+  $scope.alllakes = NoteStore.getAllLakes();
+//================
+  $scope.doRefresh =function() {
+    $scope.alllakes = NoteStore.getAllLakes();
+      $scope.places = alllakes;
+      $scope.$broadcast('scroll.refreshComplete');
 
-      $scope.onItemDelete = function(item) {
-        $scope.places.splice($scope.places.indexOf(item), 1);
-      }
+  }
 
-      $scope.doRefresh =function() {
-      $http.get('http://localhost:3000/lakemalawi').success(function(data) {
-          $scope.places = data;
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-      }
-
-      $scope.toggleStar = function(item) {
-        item.star = !item.star;
-      }
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
 
 
-      $scope.moveItem = function(item, fromIndex, toIndex) {
-        $scope.places.splice(fromIndex, 1);
-        $scope.places.splice(toIndex, 0, item);
-        //NoteStore.move(note, fromIndex, toIndex);
-      };
-    });
-}]);
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+});
+
+//================lake details controller=========================
+
+app.controller('LakeDetailsCtrl', function($scope, $stateParams, NoteStore){
+  var lakeId =  $stateParams.id;
+  $scope.whichplace = lakeId;
+  $scope.lake = NoteStore.getLake(lakeId);
+
+});
 
 //=============================Mountains List Controller=============
-app.controller('MountainListController', ['$scope', '$http', '$state',
-    function($scope, $http, $state) {
-    $http.get('http://localhost:3000/mountains').success(function(data) {
-      $scope.places = data;
-      $scope.whichplace=$state.params.aId;
-      $scope.data = { showDelete: false, showReorder: false };
+app.controller('MountainListController', function($scope, NoteStore) {
+  $scope.allmountains = NoteStore.getAllMountains();
+//================
+  $scope.doRefresh =function() {
+    $scope.allmountains = NoteStore.getAllMountains();
+      $scope.places = allmountains;
+      $scope.$broadcast('scroll.refreshComplete');
 
-      $scope.onItemDelete = function(item) {
-        $scope.places.splice($scope.places.indexOf(item), 1);
-      }
+  }
 
-      $scope.doRefresh =function() {
-      $http.get('http://localhost:3000/mountains').success(function(data) {
-          $scope.places = data;
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-      }
-
-      $scope.toggleStar = function(item) {
-        item.star = !item.star;
-      }
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
 
 
-      $scope.moveItem = function(item, fromIndex, toIndex) {
-        $scope.places.splice(fromIndex, 1);
-        $scope.places.splice(toIndex, 0, item);
-        //NoteStore.move(note, fromIndex, toIndex);
-      };
-    });
-}]);
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+  };
+});
 
-//=============================Monuments History=============
-app.controller('MonumentListController', ['$scope', '$http', '$state',
-    function($scope, $http, $state) {
-    $http.get('js/historicalsites.json').success(function(data) {
-      $scope.places = data;
-      $scope.whichplace=$state.params.aId;
-      $scope.data = { showDelete: false, showReorder: false };
+//=============================Mountains Details Controller=============
+app.controller('DetailsMountainListController', function($scope, $stateParams, NoteStore) {
+  var mountainId =  $stateParams.id;
+  $scope.whichplace = mountainId;
+  $scope.mountain = NoteStore.getMountain(mountainId);
+});
 
-      $scope.onItemDelete = function(item) {
-        $scope.places.splice($scope.places.indexOf(item), 1);
-      }
+//=============================Monuments List Controller=============
+app.controller('MonumentListController', function($scope, NoteStore) {
+  $scope.allmonuments = NoteStore.getAllMonuments();
+//================
+  $scope.doRefresh =function() {
+    $scope.allmonuments = NoteStore.getAllMonuments();
+      $scope.places = allmonuments;
+      $scope.$broadcast('scroll.refreshComplete');
 
-      $scope.doRefresh =function() {
-      $http.get('js/historicalsites.json').success(function(data) {
-          $scope.places = data;
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-      }
+  }
 
-      $scope.toggleStar = function(item) {
-        item.star = !item.star;
-      }
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
 
 
-      $scope.moveItem = function(item, fromIndex, toIndex) {
-        $scope.places.splice(fromIndex, 1);
-        $scope.places.splice(toIndex, 0, item);
-        //NoteStore.move(note, fromIndex, toIndex);
-      };
-    });
-}]);
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+  };
+
+});
 
 
+//=============================Detail Monuments History=============
+app.controller('DetailMonumentController', function($scope, $stateParams, NoteStore) {
+  var monumentsId =  $stateParams.id;
+  $scope.whichplace = monumentsId;
+  $scope.monument = NoteStore.getMonument(monumentsId);
+});
+
+// ======ParksReserveList Controller====================
+
+app.controller('ParksReserveList', function($scope, NoteStore){
+  $scope.allparks = NoteStore.getAllParks();
+//================
+  $scope.doRefresh =function() {
+    $scope.allparks = NoteStore.getAllParks();
+      $scope.places = allparks;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+
+});
+
+//============Events Details Controller====================
+app.controller('EventsListController', function($scope, NoteStore){
+  $scope.allevents = NoteStore.getAllEvents();
+//================
+  $scope.doRefresh =function() {
+    $scope.allevents = NoteStore.getAllEvents();
+      $scope.places = allevents;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+})
+
+//============History Controller====================
+app.controller('HistoryListController', function($scope, NoteStore){
+  $scope.allhistory = NoteStore.getAllHistory();
+//================
+  $scope.doRefresh =function() {
+    $scope.allhistory = NoteStore.getAllHistory();
+      $scope.places = allhistory;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+})
+
+//============City Controller====================
+app.controller('CityListController', function($scope, NoteStore){
+  $scope.allcities = NoteStore.getAllCities();
+//================
+  $scope.doRefresh =function() {
+    $scope.allcities = NoteStore.getAllCities();
+      $scope.places = allcities;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+})
+
+
+//================ Parks Details controller=========================
+
+app.controller('DetailsCtrl', function($scope, $stateParams, NoteStore){
+  var parkId =  $stateParams.id;
+  $scope.whichplace = parkId;
+  $scope.park = NoteStore.getPark(parkId);
+
+});
+
+//================ Events Details controller=========================
+
+app.controller('EventsDetailsCtrl', function($scope, $stateParams, NoteStore){
+  var eventId =  $stateParams.id;
+  $scope.whichplace = eventId;
+  $scope.event = NoteStore.getEvent(eventId);
+
+});
+
+//================ History Details controller=========================
+
+app.controller('HistoryDetailsCtrl', function($scope, $stateParams, NoteStore){
+  var historyId =  $stateParams.id;
+  $scope.whichplace = historyId;
+  $scope.history = NoteStore.getHistory(historyId);
+
+});
+
+//================ City Details controller=========================
+
+app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore){
+  var cityId =  $stateParams.id;
+  $scope.whichplace = cityId;
+  $scope.city = NoteStore.getCity(cityId);
+
+});
 //==================================================================
 
 app.run(function($ionicPlatform) {

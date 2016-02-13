@@ -1,0 +1,31 @@
+<ion-view view-title="Historical Sites and Monuments">
+<!--content-->
+<ion-content
+  class="has-subheader">
+  <ion-refresher on-refresh="doRefresh()">
+  </ion-refresher>
+  <ion-list show-reorder="myHistory.showReorder">
+    <ion-item ng-class="{'star': myHistory.star}"
+    ng-repeat='myHistory in allhistory | filter: query'
+    class="item-thumbnail-left item-icon-right
+      item-text-wrap" href="#/historicalsitesDetails/{{myHistory.$id}}">
+      <img ng-src="{{myHistory.image}}" alt="Photo">
+      <h3>{{myHistory.name}}</h3>
+      <h2>{{myHistory.reknown}}</h2>
+      <p>{{myHistory.bio | limitTo: 100}}
+      {{ myHistory.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <button class="button button-clear icon ion-star button-assertive"
+        ng-click="toggleStar(myHistory)"
+        ng-show="myHistory.star"></button>
+      <ion-option-button class="button-dark"
+        ng-click="toggleStar(myHistory)">
+        <i class="icon ion-star"></i>
+      </ion-option-button>
+
+      <ion-reorder-button class="ion-navicon"
+        on-reorder="moveItem(myHistory, $fromIndex, $toIndex)">
+      </ion-reorder-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+</ion-view>

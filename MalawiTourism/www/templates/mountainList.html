@@ -1,46 +1,29 @@
 <ion-view view-title="Mountains and Plateaus">
-
-  <ion-nav-buttons side="secondary">
-    <button
-      class="button button-icon ion-navicon"
-      ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
-    </button>
-  </ion-nav-buttons>
-
-<div class="item-input-inset bar bar-light">
-  <label class="item-input-wrapper">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="search" ng-model="query" placeholder="Search">
-  </label>
-</div>
 <!--content-->
 <ion-content
   class="has-subheader">
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
-  <ion-list
-    show-reorder="data.showReorder">
-    <ion-item ng-class="{'star': item.star}"
-    ng-repeat='item in places | filter: query'
+  <ion-list show-reorder="myMountain.showReorder">
+    <ion-item ng-class="{'star': myMountain.star}"
+    ng-repeat='myMountain in allmountains | filter: query'
     class="item-thumbnail-left item-icon-right
-      item-text-wrap" href="#/mountainList/{{item.shortname}}">
-      <img ng-src="img/{{item.shortname}}_nt.jpg"
-        alt="{{ item.name }} Photo">
-      <h3>{{item.name}}</h3>
-      <h2>{{item.reknown}}</h2>
-      <p>{{item.bio | limitTo: 100}}
-      {{ item.bio.length > 150 ? '&hellip;' : '' }}</p>
+      item-text-wrap" href="#/detailsmountain/{{myMountain.$id}}">
+      <img ng-src="{{myMountain.image}}" alt="Photo">
+      <h3>{{myMountain.name}}</h3>
+      <h2>{{myMountain.reknown}}</h2>
+      <p>{{myMountain.bio | limitTo: 100}}
+      {{ myMountain.bio.length > 150 ? '&hellip;' : '' }}</p>
       <button class="button button-clear icon ion-star button-assertive"
-        ng-click="toggleStar(item)"
-        ng-show="item.star"></button>
+        ng-click="toggleStar(myMountain)"
+        ng-show="myEvent.star"></button>
       <ion-option-button class="button-dark"
-        ng-click="toggleStar(item)">
+        ng-click="toggleStar(myMountain)">
         <i class="icon ion-star"></i>
       </ion-option-button>
-      <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
-      </ion-delete-button>
+
       <ion-reorder-button class="ion-navicon"
-        on-reorder="moveItem(item, $fromIndex, $toIndex)">
+        on-reorder="moveItem(myMountain, $fromIndex, $toIndex)">
       </ion-reorder-button>
     </ion-item>
   </ion-list>
