@@ -2,11 +2,25 @@
   <ion-content>
     <ion-list class="list-inset">
       <ion-item class="item-text-wrap">
-        <img ng-src="img/{{myMountain.shortname}}_nt.jpg">
+        <img ng-src="img/{{mountain.shortname}}_nt.jpg" alt="{{ mountain.name }} Photo">
           <h3>{{ mountain.name }}</h3>
           <h2>{{ mountain.reknown }}</h2>
           <p>{{ mountain.bio }}</p>
       </ion-item>
+      <div class="item tabs tabs-secondary tabs-icon-left" >
+        <button class="button button-calm" ng-click="shareViaTwitter("Malawi Adventures... Amazing place to visit", "null" /* img */, "http://www.visitmalawi.mw/")">
+          <i class="icon ion-social-twitter"></i>
+          Twitter
+        </a>
+        <button class="button button-positive" ng-click="shareViaFacebook("Malawi Adventures... Amazing place to visit", "null" /* img */, "http://www.visitmalawi.mw/")">
+          <i class="icon ion-social-facebook"></i>
+          Facebook
+        </a>
+        <button class="button button-balanced" ng-click="shareAnywhere()">
+          <i class="icon ion-android-share-alt"></i>
+          Other
+        </a>
+      </div><!--end div-->
     </ion-list>
   </ion-content>
 </ion-view>

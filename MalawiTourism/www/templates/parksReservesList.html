@@ -1,11 +1,12 @@
-<ion-view view-title="Wildlife Parks and Reserves">
+<ion-view view-title="Places to Visit">
+
 <!--content-->
 <ion-content
   class="has-subheader">
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="allparks.showReorder">
-    <ion-item ng-class="{'star': item.star}"
+    <ion-item ng-class="{'star': item.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='item in allparks | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detail/{{item.$id}}">
@@ -14,6 +15,7 @@
       <h2>{{item.reknown}}</h2>
       <p>{{item.bio | limitTo: 100}}
       {{ item.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(item)"
         ng-show="item.star"></button>

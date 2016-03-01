@@ -5,15 +5,16 @@
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="myMountain.showReorder">
-    <ion-item ng-class="{'star': myMountain.star}"
+    <ion-item ng-class="{'star': myMountain.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myMountain in allmountains | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detailsmountain/{{myMountain.$id}}">
-      <img ng-src="{{myMountain.image}}" alt="Photo">
+      <img ng-src="img/{{myMountain.shortname}}_nt.jpg" alt="{{ myMountain.name }} Photo">
       <h3>{{myMountain.name}}</h3>
       <h2>{{myMountain.reknown}}</h2>
       <p>{{myMountain.bio | limitTo: 100}}
       {{ myMountain.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(myMountain)"
         ng-show="myEvent.star"></button>

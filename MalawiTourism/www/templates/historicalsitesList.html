@@ -5,15 +5,16 @@
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="myHistory.showReorder">
-    <ion-item ng-class="{'star': myHistory.star}"
+    <ion-item ng-class="{'star': myHistory.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myHistory in allhistory | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/historicalsitesDetails/{{myHistory.$id}}">
-      <img ng-src="{{myHistory.image}}" alt="Photo">
+    <img ng-src="img/{{myHistory.shortname}}_nt.jpg" alt="{{ myHistory.name }} Photo">
       <h3>{{myHistory.name}}</h3>
       <h2>{{myHistory.reknown}}</h2>
       <p>{{myHistory.bio | limitTo: 100}}
       {{ myHistory.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(myHistory)"
         ng-show="myHistory.star"></button>

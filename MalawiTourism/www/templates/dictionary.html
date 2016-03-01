@@ -1,0 +1,14 @@
+<ion-view view-title="Word Phrases" >
+  <div class="has header">
+   <button class="button button-calm icon-left ion-shuffle" ng-click="toggleReordering()">Re-Order</button>
+ </div>
+  <ion-content class="padding has-header" ng-controller="DictionaryCtrl" >
+    <ion-list show-reorder="reordering">
+      <ion-item class="item item-icon-left icon ion-android-people" ng-repeat="phrase in alldictionary">
+        <h3>{{phrase.english}}</h3>
+        <p>{{phrase.chichewa}}</p>
+        <ion-reorder-button class="ion-drag" on-reorder="move(note, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

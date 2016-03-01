@@ -5,15 +5,16 @@
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="alllakes.showReorder">
-    <ion-item ng-class="{'star': myLake.star}"
+    <ion-item ng-class="{'star': myLake.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myLake in alllakes | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detailsLakeActivities/{{myLake.$id}}">
-      <img ng-src="{{myLake.image}}" alt="Photo">
+      <img ng-src="img/{{myLake.shortname}}_nt.jpg" alt="{{ myLake.name }} Photo">
       <h3>{{myLake.name}}</h3>
       <h2>{{myLake.reknown}}</h2>
       <p>{{myLake.bio | limitTo: 100}}
       {{ myLake.bio.length > 150 ? '&hellip;' : '' }}</p>
+      <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(myLake)"
         ng-show="myLake.star"></button>

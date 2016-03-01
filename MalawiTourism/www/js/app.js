@@ -250,6 +250,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     })
 
+    //dictionary
+      $stateProvider.state('dictionary', {
+        url: '/dictionary',
+       views: {
+          'tab-home': {
+            templateUrl: 'templates/dictionary.html',
+            controller:'DictionaryCtrl'
+          }
+        }
+
+      })
 
   $urlRouterProvider.otherwise('/home');
 })
@@ -328,6 +339,12 @@ app.factory('NoteStore', function($firebaseArray, $firebaseObject){
       getCity: function(cityId){
          return $firebaseObject(ref.child('cities').child(cityId));
        },
+
+       //getAllDictionary
+       getAllDictionary: function(){
+          return $firebaseArray(ref.child('dictionary'));
+       },
+
 
     // Notes list
     list: function(){
@@ -740,36 +757,6 @@ app.controller('DetailsMountainListController', function($scope, $stateParams, N
   $scope.mountain = NoteStore.getMountain(mountainId);
 });
 
-//=============================Monuments List Controller=============
-app.controller('MonumentListController', function($scope, NoteStore) {
-  $scope.allmonuments = NoteStore.getAllMonuments();
-//================
-  $scope.doRefresh =function() {
-    $scope.allmonuments = NoteStore.getAllMonuments();
-      $scope.places = allmonuments;
-      $scope.$broadcast('scroll.refreshComplete');
-
-  }
-
-  $scope.toggleStar = function(item) {
-    item.star = !item.star;
-  }
-
-
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.places.splice(fromIndex, 1);
-    $scope.places.splice(toIndex, 0, item);
-  };
-
-});
-
-
-//=============================Detail Monuments History=============
-app.controller('DetailMonumentController', function($scope, $stateParams, NoteStore) {
-  var monumentsId =  $stateParams.id;
-  $scope.whichplace = monumentsId;
-  $scope.monument = NoteStore.getMonument(monumentsId);
-});
 
 // ======ParksReserveList Controller====================
 
@@ -795,6 +782,32 @@ app.controller('ParksReserveList', function($scope, NoteStore){
   };
 
 });
+
+// ======Dictionary Controller====================
+
+app.controller('DictionaryCtrl', function($scope, NoteStore){
+  $scope.alldictionary = NoteStore.getAllDictionary();
+//================
+  $scope.doRefresh =function() {
+    $scope.alldictionary = NoteStore.getAllDictionary();
+      $scope.places = alldictionary;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+
+});
+
 
 //============Events Details Controller====================
 app.controller('EventsListController', function($scope, NoteStore){
@@ -901,6 +914,80 @@ app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore){
   $scope.city = NoteStore.getCity(cityId);
 
 });
+//==================================================================
+//social media sharing
+app.controller("ShareController", function($scope, $cordovaSocialSharing) {
+
+
+    $scope.shareAnywhere = function() {
+        $cordovaSocialSharing.share("The warm heart of Africa. Amazing place to visit", "Discover Malawi", "null" /* img */, "http://www.visitmalawi.mw/");
+    }
+   $scope.shareViaTwitter = function(message, image, link) {
+     $cordovaSocialSharing
+       .shareViaTwitter(message, image, link)
+       .then(function(result) {
+         // Success!
+         alert("success : "+result);
+       }, function(err) {
+         // An error occurred. Show a message to the user
+         alert("Cannot share on Twitter");
+       });
+   }
+
+
+   $scope.shareViaWhatsApp = function(message, image, link) {
+     $cordovaSocialSharing
+       .shareViaWhatsApp(message, image, link)
+       .then(function(result) {
+        alert(result);
+         // Success!
+       }, function(err) {
+         // An error occurred. Show a message to the user
+          alert("Cannot share on WhatsApp");
+       });
+   }
+   $scope.shareViaFacebook = function(message, image, link) {
+     $cordovaSocialSharing
+       .shareViaFacebook(message, image, link)
+       .then(function(result) {
+         // Success!
+       }, function(err) {
+         // An error occurred. Show a message to the user
+         alert("Cannot share on Facebook");
+       });
+   }
+  // access multiple numbers in a string like: '0612345678,0687654321'
+   $scope.shareViaSMS = function(message, number) {
+     $cordovaSocialSharing
+       .shareViaSMS(message, number)
+       .then(function(result) {
+        alert(result);
+         // Success!
+       }, function(err) {
+         // An error occurred. Show a message to the user
+       });
+   }
+  // TO, CC, BCC must be an array, Files can be either null, string or array
+   $scope.shareViaFacebook = function(message, subject, toArr, bccArr, file) {
+     $cordovaSocialSharing
+       .shareViaEmail(message, subject, toArr, bccArr, file)
+       .then(function(result) {
+         // Success!
+       }, function(err) {
+         // An error occurred. Show a message to the user
+       });
+   }
+   $scope.shareViaFacebook = function(socialType, message, image, link) {
+    $cordovaSocialSharing
+      .canShareVia(socialType, message, image, link)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+        // An error occurred. Show a message to the user
+      });
+    }
+});
+
 //==================================================================
 
 app.run(function($ionicPlatform) {

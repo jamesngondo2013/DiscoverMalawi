@@ -5,15 +5,16 @@
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="allevents.showReorder">
-    <ion-item ng-class="{'star': myEvent.star}"
+    <ion-item ng-class="{'star': myEvent.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myEvent in allevents | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detailsLakeActivities/{{myEvent.$id}}">
-      <img ng-src="{{myEvent.image}}" alt="Photo">
+      <img ng-src="img/{{myEvent.shortname}}_nt.jpg" alt="{{ myEvent.name }} Photo">
       <h3>{{myEvent.name}}</h3>
       <h2>{{myEvent.reknown}}</h2>
       <p>{{myEvent.bio | limitTo: 100}}
       {{ myEvent.bio.length > 150 ? '&hellip;' : '' }}</p>
+       <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(myEvent)"
         ng-show="myEvent.star"></button>

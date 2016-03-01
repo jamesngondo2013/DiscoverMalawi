@@ -5,7 +5,7 @@
   <ion-refresher on-refresh="doRefresh()">
   </ion-refresher>
   <ion-list show-reorder="myCity.showReorder">
-    <ion-item ng-class="{'star': myCity.star}"
+    <ion-item ng-class="{'star': myCity.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myCity in allcities | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/citiesDetails/{{myCity.$id}}">
@@ -14,6 +14,7 @@
       <h2>{{myCity.reknown}}</h2>
       <p>{{myCity.bio | limitTo: 100}}
       {{ myCity.bio.length > 150 ? '&hellip;' : '' }}</p>
+       <i class="icon ion-arrow-right-b"></i>
       <button class="button button-clear icon ion-star button-assertive"
         ng-click="toggleStar(myCity)"
         ng-show="myCity.star"></button>
