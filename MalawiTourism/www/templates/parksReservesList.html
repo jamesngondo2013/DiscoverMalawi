@@ -1,5 +1,4 @@
 <ion-view view-title="Places to Visit">
-
 <!--content-->
 <ion-content
   class="has-subheader">
@@ -7,7 +6,7 @@
   </ion-refresher>
   <ion-list show-reorder="allparks.showReorder">
     <ion-item ng-class="{'star': item.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
-    ng-repeat='item in allparks | filter: query'
+    ng-repeat='item in allparks | filter: search'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detail/{{item.$id}}">
       <img ng-src="{{item.image}}" alt="Photo">

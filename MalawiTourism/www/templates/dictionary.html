@@ -1,10 +1,20 @@
 <ion-view view-title="Word Phrases" >
-  <div class="has header">
-   <button class="button button-calm icon-left ion-shuffle" ng-click="toggleReordering()">Re-Order</button>
- </div>
+
+  <ion-header-bar class="bar-subheader">
+   </ion-header-bar>
+   <ion-header-bar class="bar-subheader">
+     <div class="bar bar-subheader item-input-inset" no-tap-scroll="true">
+     <!--label class="item item-input"-->
+       <i class="icon ion-search placeholder-ion"></i>
+       <input type="text" placeholder="Search Here" data-ng-model="search">
+     <!--/label-->
+    </div><!--end div-->
+
+   </ion-header-bar>
+
   <ion-content class="padding has-header" ng-controller="DictionaryCtrl" >
     <ion-list show-reorder="reordering">
-      <ion-item class="item item-icon-left icon ion-android-people" ng-repeat="phrase in alldictionary">
+      <ion-item class="item item-icon-left icon ion-android-people" ng-repeat="phrase in alldictionary | filter:search">
         <h3>{{phrase.english}}</h3>
         <p>{{phrase.chichewa}}</p>
         <ion-reorder-button class="ion-drag" on-reorder="move(note, $fromIndex, $toIndex)"></ion-reorder-button>

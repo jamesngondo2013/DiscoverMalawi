@@ -6,23 +6,30 @@
           <h3>{{ lake.name }}</h3>
           <h2>{{ lake.reknown }}</h2>
           <p>{{ lake.bio }}</p>
-          <i class="icon ion-arrow-right-b"></i>
+
       </ion-item>
-      <div class="item tabs tabs-secondary tabs-icon-left" >
-        <button class="button button-calm" ng-click="shareViaTwitter("Malawi Adventures... Amazing place to visit", "null" /* img */, "http://www.visitmalawi.mw/")">
-          <i class="icon ion-social-twitter"></i>
-          Twitter
-        </a>
-        <button class="button button-positive" ng-click="shareViaFacebook("Malawi Adventures... Amazing place to visit", "null" /* img */, "http://www.visitmalawi.mw/")">
-          <i class="icon ion-social-facebook"></i>
-          Facebook
-        </a>
-        <button class="button button-balanced" ng-click="shareAnywhere()">
-          <i class="icon ion-android-share-alt"></i>
-          Other
-        </a>
-      </div><!--end div-->
+
     </ion-list>
   </ion-content>
+  <ion-footer-bar>
+    <div class="item tabs tabs-secondary tabs-icon-left" >
+
+     </button>
+     <button class="button button-calm" ng-click="twitterShare()">
+           <i class="icon ion-social-twitter"></i>
+             Twitter
+     </button>
+     <button class="button button-positive" ng-click="FaceBookShare()">
+           <i class="icon ion-social-facebook"></i>
+             Facebook
+     </button>
+     <button class="button button-royal" ng-click="nativeShare()">
+            <i class="icon ion-android-share-alt"></i>
+              Share
+     </button>
+
+
+    </div><!--end div-->
+  </ion-footer-bar>
 
 </ion-view>

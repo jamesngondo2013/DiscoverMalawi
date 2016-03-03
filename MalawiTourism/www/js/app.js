@@ -133,28 +133,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-
-  //monuments and history
-  $stateProvider.state('monumentList', {
-    url: '/monumentList',
-    views: {
-      'tab-home' : {
-        templateUrl: 'templates/monumentList.html',
-        controller: 'MonumentListController'
-      }
-    }
-  })
-
-  $stateProvider.state('detailsmonuments', {
-    url: '/monumentList/:id',
-    views: {
-      'tab-home' : {
-        templateUrl: 'templates/detailsmonuments.html',
-        controller: 'MonumentListController'
-      }
-    }
-  })
-
   //cities
   $stateProvider.state('citiesList', {
     url: '/citiesList',
@@ -721,11 +699,28 @@ app.controller('LakeActivitiesListController', function($scope, NoteStore) {
 
 //================lake details controller=========================
 
-app.controller('LakeDetailsCtrl', function($scope, $stateParams, NoteStore){
-  var lakeId =  $stateParams.id;
-  $scope.whichplace = lakeId;
-  $scope.lake = NoteStore.getLake(lakeId);
+app.controller('LakeDetailsCtrl', function($scope, $stateParams, NoteStore, $ionicPlatform, $cordovaSocialSharing){
+     $ionicPlatform.ready(function() {
 
+        var message = 'A beach like no other. Amazing fresh waters';
+        var subject = 'Lake Malawi';
+        var link = 'http://www.visitmalawi.mw/'; // fake image
+
+        $scope.nativeShare = function() {
+            $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+        };
+        $scope.FaceBookShare = function() {
+            $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+        };
+
+        $scope.twitterShare = function() {
+            $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+        };
+    });
+
+    var lakeId =  $stateParams.id;
+    $scope.whichplace = lakeId;
+    $scope.lake = NoteStore.getLake(lakeId);
 });
 
 //=============================Mountains List Controller=============
@@ -751,7 +746,25 @@ app.controller('MountainListController', function($scope, NoteStore) {
 });
 
 //=============================Mountains Details Controller=============
-app.controller('DetailsMountainListController', function($scope, $stateParams, NoteStore) {
+app.controller('DetailsMountainListController', function($scope, $stateParams, NoteStore,$ionicPlatform, $cordovaSocialSharing) {
+  $ionicPlatform.ready(function() {
+
+     var message = 'Beautiful Mountains and Plateaus';
+     var subject = 'Mountain climbing';
+     var link = 'http://www.visitmalawi.mw/'; // fake image
+
+     $scope.nativeShare = function() {
+         $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+     };
+     $scope.FaceBookShare = function() {
+         $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+     };
+
+     $scope.twitterShare = function() {
+         $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+     };
+ });
+
   var mountainId =  $stateParams.id;
   $scope.whichplace = mountainId;
   $scope.mountain = NoteStore.getMountain(mountainId);
@@ -881,7 +894,25 @@ app.controller('CityListController', function($scope, NoteStore){
 
 //================ Parks Details controller=========================
 
-app.controller('DetailsCtrl', function($scope, $stateParams, NoteStore){
+app.controller('DetailsCtrl', function($scope, $stateParams, NoteStore,$ionicPlatform, $cordovaSocialSharing){
+  $ionicPlatform.ready(function() {
+
+        var message = 'Beautiful Wildlife Parks';
+        var subject = 'Safari in Malawi';
+        var link = 'http://www.visitmalawi.mw/'; // fake image
+
+        $scope.nativeShare = function() {
+            $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+        };
+        $scope.FaceBookShare = function() {
+            $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+        };
+
+        $scope.twitterShare = function() {
+            $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+        };
+    });
+
   var parkId =  $stateParams.id;
   $scope.whichplace = parkId;
   $scope.park = NoteStore.getPark(parkId);
@@ -890,7 +921,25 @@ app.controller('DetailsCtrl', function($scope, $stateParams, NoteStore){
 
 //================ Events Details controller=========================
 
-app.controller('EventsDetailsCtrl', function($scope, $stateParams, NoteStore){
+app.controller('EventsDetailsCtrl', function($scope, $stateParams, NoteStore,$ionicPlatform, $cordovaSocialSharing){
+  $ionicPlatform.ready(function() {
+
+        var message = 'Good social life';
+        var subject = 'Events in Malawi';
+        var link = 'http://www.visitmalawi.mw/'; // fake image
+
+        $scope.nativeShare = function() {
+            $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+        };
+        $scope.FaceBookShare = function() {
+            $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+        };
+
+        $scope.twitterShare = function() {
+            $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+        };
+    });
+
   var eventId =  $stateParams.id;
   $scope.whichplace = eventId;
   $scope.event = NoteStore.getEvent(eventId);
@@ -899,7 +948,25 @@ app.controller('EventsDetailsCtrl', function($scope, $stateParams, NoteStore){
 
 //================ History Details controller=========================
 
-app.controller('HistoryDetailsCtrl', function($scope, $stateParams, NoteStore){
+app.controller('HistoryDetailsCtrl', function($scope, $stateParams, NoteStore,$ionicPlatform, $cordovaSocialSharing){
+  $ionicPlatform.ready(function() {
+
+        var message = 'The best place to visit';
+        var subject = 'Historical Sites in Malawi';
+        var link = 'http://www.visitmalawi.mw/'; // fake image
+
+        $scope.nativeShare = function() {
+            $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+        };
+        $scope.FaceBookShare = function() {
+            $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+        };
+
+        $scope.twitterShare = function() {
+            $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+        };
+    });
+
   var historyId =  $stateParams.id;
   $scope.whichplace = historyId;
   $scope.history = NoteStore.getHistory(historyId);
@@ -908,7 +975,25 @@ app.controller('HistoryDetailsCtrl', function($scope, $stateParams, NoteStore){
 
 //================ City Details controller=========================
 
-app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore){
+app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore,$ionicPlatform, $cordovaSocialSharing){
+  $ionicPlatform.ready(function() {
+
+        var message = 'Very beautiful and safe';
+        var subject = 'Cities in Malwi';
+        var link = 'http://www.visitmalawi.mw/'; // fake image
+
+        $scope.nativeShare = function() {
+            $cordovaSocialSharing.share(message, subject, link); // Share via native share sheet
+        };
+        $scope.FaceBookShare = function() {
+            $cordovaSocialSharing.shareViaFacebook(message, subject, link); // Share via native share sheet
+        };
+
+        $scope.twitterShare = function() {
+            $cordovaSocialSharing.shareViaTwitter(message, subject, link); // Share via native share sheet
+        };
+    });
+
   var cityId =  $stateParams.id;
   $scope.whichplace = cityId;
   $scope.city = NoteStore.getCity(cityId);
@@ -916,77 +1001,7 @@ app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore){
 });
 //==================================================================
 //social media sharing
-app.controller("ShareController", function($scope, $cordovaSocialSharing) {
 
-
-    $scope.shareAnywhere = function() {
-        $cordovaSocialSharing.share("The warm heart of Africa. Amazing place to visit", "Discover Malawi", "null" /* img */, "http://www.visitmalawi.mw/");
-    }
-   $scope.shareViaTwitter = function(message, image, link) {
-     $cordovaSocialSharing
-       .shareViaTwitter(message, image, link)
-       .then(function(result) {
-         // Success!
-         alert("success : "+result);
-       }, function(err) {
-         // An error occurred. Show a message to the user
-         alert("Cannot share on Twitter");
-       });
-   }
-
-
-   $scope.shareViaWhatsApp = function(message, image, link) {
-     $cordovaSocialSharing
-       .shareViaWhatsApp(message, image, link)
-       .then(function(result) {
-        alert(result);
-         // Success!
-       }, function(err) {
-         // An error occurred. Show a message to the user
-          alert("Cannot share on WhatsApp");
-       });
-   }
-   $scope.shareViaFacebook = function(message, image, link) {
-     $cordovaSocialSharing
-       .shareViaFacebook(message, image, link)
-       .then(function(result) {
-         // Success!
-       }, function(err) {
-         // An error occurred. Show a message to the user
-         alert("Cannot share on Facebook");
-       });
-   }
-  // access multiple numbers in a string like: '0612345678,0687654321'
-   $scope.shareViaSMS = function(message, number) {
-     $cordovaSocialSharing
-       .shareViaSMS(message, number)
-       .then(function(result) {
-        alert(result);
-         // Success!
-       }, function(err) {
-         // An error occurred. Show a message to the user
-       });
-   }
-  // TO, CC, BCC must be an array, Files can be either null, string or array
-   $scope.shareViaFacebook = function(message, subject, toArr, bccArr, file) {
-     $cordovaSocialSharing
-       .shareViaEmail(message, subject, toArr, bccArr, file)
-       .then(function(result) {
-         // Success!
-       }, function(err) {
-         // An error occurred. Show a message to the user
-       });
-   }
-   $scope.shareViaFacebook = function(socialType, message, image, link) {
-    $cordovaSocialSharing
-      .canShareVia(socialType, message, image, link)
-      .then(function(result) {
-        // Success!
-      }, function(err) {
-        // An error occurred. Show a message to the user
-      });
-    }
-});
 
 //==================================================================
 
