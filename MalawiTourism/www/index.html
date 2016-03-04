@@ -7,6 +7,9 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <!-- weather font -->
+    <!--link href="lib/weather-icons/css/weather-icons.min.css" rel="stylesheet"-->
+    <!--link href="lib/weather-icons/css/weather-icons-wind.min.css" rel="stylesheet"-->
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -14,6 +17,7 @@
 
     <!-- ionic/angularjs js -->
      <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/js/angular/angular-resource.js"></script>
 
      <!-- cordova script (this will be a 404 during development) -->
      <script src="js/ng-cordova.min.js"></script>
@@ -41,25 +45,25 @@
         <ion-nav-view name="tab-home"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Login" icon="icon ion-camera"
-        href="#/firebase">
-        <ion-nav-view name="tab-firebase"></ion-nav-view>
+      <ion-tab title="Weather" icon="icon ion-cloud"
+        href="#/weather">
+        <ion-nav-view name="tab-weather"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="About" icon="icon ion-information-circled"
+        href="#/about">
+        <ion-nav-view name="tab-about"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Contacts" icon="icon ion-android-contact"
+        href="#/contacts">
+        <ion-nav-view name="tab-contacts"></ion-nav-view>
       </ion-tab>
 
       <ion-tab title="Maps" icon="icon ion-map"
         href="#/map">
         <ion-nav-view name="tab-map"></ion-nav-view>
       </ion-tab>
-
-      <!--ion-tab title="Accomodation" icon="icon ion-map"
-        href="#/">
-        <ion-nav-view name=""></ion-nav-view>
-      </ion-tab>
-
-      <ion-tab title="About" icon="icon ion-map"
-        href="#/">
-        <ion-nav-view name=""></ion-nav-view>
-      </ion-tab-->
 
 
     </ion-tabs>

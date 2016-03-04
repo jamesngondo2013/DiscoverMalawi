@@ -1,0 +1,86 @@
+<ion-view title="Weather Forecast">
+
+  <ion-content class=" padding">
+  <h3>Weather Forecast Information</h3>
+
+    <div class="list card animated bounceInRight">
+      <div class="item item-divider">
+        <div class="item item-divider">
+           <h3>{{city}}</h3>
+         </div>
+      </div>
+      <div class="item item-body">
+        <div>
+          <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+             {{current.currently.summary}}</h4>
+        </div>
+        <div>
+            <p>The temperature now is</p>
+        </div>
+        <div>
+            <span class="large">{{current.currently.temperature}} °C </span>
+        </div>
+      </div>
+    </div>
+      <!--div-->
+    <div class="list card animated bounceInLeft">
+      <div class="item item-divider">
+        <div class="item item-divider">
+           <h3>{{city2}}</h3>
+         </div>
+      </div>
+      <div class="item item-body">
+        <div>
+          <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+             {{currentBT.currently.summary}}</h4>
+        </div>
+        <div>
+            <p>The temperature now is</p>
+        </div>
+        <div>
+            <span class="large">{{currentBT.currently.temperature}} °C </span>
+        </div>
+      </div>
+    </div>
+    <!--div-->
+    <div class="list card animated bounceInLeft">
+      <div class="item item-divider">
+        <div class="item item-divider">
+           <h3>{{city4}}</h3>
+         </div>
+      </div>
+      <div class="item item-body">
+        <div>
+          <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+             {{currentMZ.currently.summary}}</h4>
+        </div>
+        <div>
+            <p>The temperature now is</p>
+        </div>
+        <div>
+            <span class="large">{{currentMZ.currently.temperature}} °C </span>
+        </div>
+      </div>
+    </div>
+    <!--div-->
+    <div class="list card animated bounceInRight">
+      <div class="item item-divider">
+        <div class="item item-divider">
+           <h3>{{city3}}</h3>
+         </div>
+      </div>
+      <div class="item item-body">
+        <div>
+          <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+             {{currentZA.currently.summary}}</h4>
+        </div>
+        <div>
+            <p>The temperature now is</p>
+        </div>
+        <div>
+            <span class="large">{{currentZA.currently.temperature}} °C </span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

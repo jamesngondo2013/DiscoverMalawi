@@ -5,11 +5,32 @@
 // the 2nd parameter is an array of 'requires'
 (function(){
 
+  var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY',
+    function($q, $resource, $http, FORECASTIO_KEY) {
+    var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
 
-  var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase']);
+    var weatherResource = $resource(url, {
+      callback: 'JSON_CALLBACK',
+    }, {
+      get: {
+        method: 'JSONP'
+      }
+    });
+
+    return {
+      //getAtLocation: function(lat, lng) {
+      getCurrentWeather: function(lat, lng) {
+        return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK&units=si&lang=en');
+      }
+    }
+  }];
+
+
+  var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'ngResource']);
 
   var fb = new Firebase("https://shining-torch-8813.firebaseio.com/");
   var ref = new Firebase("https://discovermalawi.firebaseio.com/");
+  app.constant('FORECASTIO_KEY', 'b468b50051718710a04b134824010076')
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -167,31 +188,58 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   })
 
-  //firebase
-  $stateProvider.state('firebase', {
-       url: '/firebase',
+  //about
+  $stateProvider.state('about', {
+       url: '/about',
        views: {
-         'tab-firebase': {
-           templateUrl: 'templates/firebase.html',
-           controller: "FirebaseController",
+         'tab-about': {
+           templateUrl: 'templates/about.html',
+           controller: "",
            cache: false
          }
        }
 
      })
 
-     //secure state
-     $stateProvider.state('secure', {
-       url: '/secure',
+  //weather
+  $stateProvider.state('weather', {
+       url: '/weather',
        views: {
-         'tab-firebase': {
-           templateUrl: 'templates/secure.html',
-           controller: "SecureController"
+         'tab-weather': {
+           templateUrl: 'templates/weather.html',
+           controller: "WeatherCtrl",
+           cache: false
          }
        }
 
-
      })
+
+     //=====================================
+     //firebase
+       $stateProvider.state('contacts', {
+            url: '/contacts',
+            views: {
+              'tab-contacts': {
+                templateUrl: 'templates/contacts.html',
+                controller: "AccommodationListListController",
+                cache: false
+              }
+            }
+
+          })
+
+          //secure state
+          $stateProvider.state('contacts_detail', {
+            url: '/contacts_detail/:id',
+            views: {
+              'tab-contacts': {
+                templateUrl: 'templates/contacts_detail.html',
+                controller: "AccommodationDetailsCtrl"
+              }
+            }
+
+
+          })
 
 
   //list
@@ -243,13 +291,119 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
 })
 
+//======================weather Lilongwe ==================================
+app.factory('DataStore', function() {
+    //create datastore with default values
+    var DataStore = {
+
+            city:       'Lilongwe',
+            latitude:   -13.9833333,
+            longitude:  33.7833333
+
+        };
+
+        DataStore.setCity = function (value) {
+        DataStore.city = value;
+    };
+
+    DataStore.setLatitude = function (value) {
+       DataStore.latitude = value;
+    };
+
+    DataStore.setLongitude = function (value) {
+       DataStore.longitude = value;
+    };
+
+    return DataStore;
+})
+
+//======================weather Blantyre ==================================
+app.factory('DataStoreBT', function() {
+    //create datastore with default values
+    var DataStoreBT = {
+
+            city2:       'Blantyre',
+            latitude2:  -15.7861111 ,
+            longitude2:  35.0058333
+
+        };
+
+        DataStoreBT.setCity = function (value) {
+        DataStoreBT.city2 = value;
+    };
+
+    DataStoreBT.setLatitude = function (value) {
+       DataStoreBT.latitude2 = value;
+    };
+
+    DataStoreBT.setLongitude = function (value) {
+       DataStoreBT.longitude2 = value;
+    };
+
+    return DataStoreBT;
+})
+
+//======================weather Zomba ==================================
+app.factory('DataStoreZA', function() {
+    //create datastore with default values
+    var DataStoreZA = {
+
+          city3:       'Zomba',
+          latitude3:   -15.3833333,
+          longitude3:  35.3333333
+
+        };
+
+        DataStoreZA.setCity = function (value) {
+        DataStoreZA.city3 = value;
+    };
+
+       DataStoreZA.setLatitude = function (value) {
+       DataStoreZA.latitude3 = value;
+    };
+
+       DataStoreZA.setLongitude = function (value) {
+       DataStoreZA.longitude3 = value;
+    };
+
+    return DataStoreZA;
+})
+
+//======================weather Mzuzu ==================================
+app.factory('DataStoreMZ', function() {
+    //create datastore with default values
+    var DataStoreMZ = {
+
+          city4:       'Mzuzu',
+          latitude4:   -11.465560,
+          longitude4:  34.020710
+
+        };
+
+        DataStoreMZ.setCity = function (value) {
+        DataStoreMZ.city4 = value;
+    };
+
+       DataStoreMZ.setLatitude = function (value) {
+       DataStoreMZ.latitude4 = value;
+    };
+
+       DataStoreMZ.setLongitude = function (value) {
+       DataStoreMZ.longitude4 = value;
+    };
+
+    return DataStoreMZ;
+})
+
+
+//==================== factory weather forecastioWeather
+.factory('Weather', forecastioWeather)
+
+
 //=======================Factory for views sharing the same functions======
 app.factory('NoteStore', function($firebaseArray, $firebaseObject){
 
   var notes = angular.fromJson(  window.localStorage['notes'] ||'[]');
-
-
-
 // store notes in local storage
     function persist()
     {
@@ -323,6 +477,16 @@ app.factory('NoteStore', function($firebaseArray, $firebaseObject){
           return $firebaseArray(ref.child('dictionary'));
        },
 
+       //get all accommodation
+       getAllAccommodation: function(){
+          return $firebaseArray(ref.child('accommodation'));
+       },
+
+       //get individual accommodation
+       getAccommodation: function(accommodationId){
+          return $firebaseObject(ref.child('accommodation').child(accommodationId));
+        },
+
 
     // Notes list
     list: function(){
@@ -381,7 +545,6 @@ app.factory('NoteStore', function($firebaseArray, $firebaseObject){
 
 });
 
-
 //========================Controllers==============
 app.controller('ListCtrl', function($scope, NoteStore){
 //populate the list
@@ -429,79 +592,6 @@ app.controller('EditController', function($scope, $state, NoteStore) {
     NoteStore.update($scope.note);
     $state.go('list');
   };
-});
-
-//===========================Camera Controllers======================================
-app.controller("FirebaseController", function($scope, $state, $firebaseAuth){
-  var fbAuth = $firebaseAuth(fb);
-  $scope.login = function(username, password){
-    //mapping email & password to email & assword
-    fbAuth.$authWithPassword({
-      email: username,
-      password: password
-    }).then(function(authData){
-      //this is a sucess promise then go to secure page
-      $state.go("secure");
-    }).catch(function(error){
-      console.error("ERROR: " + error);
-    });
-  }
-
-  //register username
-    $scope.register = function(username, password){
-      fbAuth.$createUser({
-        email: username,
-        password: password
-      }).then(function(userData){
-        return fbAuth.$authWithPassword({
-          email: username,
-          password: password
-        });
-      }).then(function(authData){
-          $state.go("secure");
-      }).catch(function(error){
-          console.error("ERROR: " + error);
-      });
-    }
-
-});
-
-//secure controller
-app.controller("SecureController", function($scope, $ionicHistory, $firebaseArray, $cordovaCamera){
-  $ionicHistory.clearHistory();
-
-    $scope.images = [];
-
-    var fbAuth = fb.getAuth();
-    if(fbAuth) {
-        var userReference = fb.child("users/" + fbAuth.uid);
-        var syncArray = $firebaseArray(userReference.child("images"));
-        $scope.images = syncArray;
-    } else {
-        $state.go("firebase");
-    }
-
-    $scope.upload = function() {
-        var options = {
-            quality : 75,
-            destinationType : Camera.DestinationType.DATA_URL,
-            sourceType : Camera.PictureSourceType.CAMERA,
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            popoverOptions: CameraPopoverOptions,
-            targetWidth: 500,
-            targetHeight: 500,
-            saveToPhotoAlbum: false
-        };
-        $cordovaCamera.getPicture(options).then(function(imageData) {
-            syncArray.$add({image: imageData}).then(function() {
-                alert("Image has been uploaded");
-            });
-        }, function(error) {
-            console.error(error);
-        });
-    }
-
 });
 
 //============================Map==================================
@@ -891,6 +981,39 @@ app.controller('CityListController', function($scope, NoteStore){
   };
 })
 
+//============AccommodationList Controller====================
+app.controller('AccommodationListListController', function($scope, NoteStore){
+  $scope.allaccommodation = NoteStore.getAllAccommodation();
+//================
+  $scope.doRefresh =function() {
+    $scope.allaccommodation = NoteStore.getAllAccommodation();
+      $scope.places = allaccommodation;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+})
+
+//================ Accommodation Details controller=========================
+
+app.controller('AccommodationDetailsCtrl', function($scope, $stateParams, NoteStore){
+
+  var accommodationId =  $stateParams.id;
+  $scope.whichplace = accommodationId;
+  $scope.accommodation = NoteStore.getAccommodation(accommodationId);
+
+});
+
 
 //================ Parks Details controller=========================
 
@@ -999,11 +1122,80 @@ app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore,$ioni
   $scope.city = NoteStore.getCity(cityId);
 
 });
-//==================================================================
-//social media sharing
+//============================WeatherCtrl======================================
+app.controller('WeatherCtrl', function($scope,$state,Weather,DataStore,DataStoreBT,DataStoreZA,DataStoreMZ) {
+    //read default settings into scope - LL
+    console.log('inside weather');
+    $scope.city  = DataStore.city;
+    var latitude  =  DataStore.latitude;
+    var longitude = DataStore.longitude;
+
+    //call getCurrentWeather method in factory ‘Weather --LL’
+    Weather.getCurrentWeather(latitude,longitude).then(function(resp) {
+      $scope.current = resp.data;
+      console.log('GOT CURRENT', $scope.current);
+      //debugger;
+    }, function(error) {
+      alert('Unable to get current conditions');
+      console.error(error);
+    });
+//=============================================================================
+    //read default settings into scope - BT
+    console.log('inside weather');
+    $scope.city2  = DataStoreBT.city2;
+    var latitude2  =  DataStoreBT.latitude2;
+    var longitude2 = DataStoreBT.longitude2;
+
+    //call getCurrentWeather method in factory ‘Weather --BT’
+    Weather.getCurrentWeather(latitude2,longitude2).then(function(resp) {
+      $scope.currentBT = resp.data;
+      console.log('GOT CURRENT', $scope.currentBT);
+      //debugger;
+    }, function(error) {
+      alert('Unable to get current conditions');
+      console.error(error);
+    });
+
+//=============================================================================
+    //read default settings into scope - ZA
+    console.log('inside weather');
+    $scope.city3  = DataStoreZA.city3;
+    var latitude3  =  DataStoreZA.latitude3;
+    var longitude3 = DataStoreZA.longitude3;
 
 
-//==================================================================
+    //call getCurrentWeather method in factory ‘Weather --ZA’
+    Weather.getCurrentWeather(latitude3,longitude3).then(function(resp) {
+      $scope.currentZA = resp.data;
+      console.log('GOT CURRENT', $scope.currentZA);
+      //debugger;
+    }, function(error) {
+      alert('Unable to get current conditions');
+      console.error(error);
+    });
+
+    //read default settings into scope - MZ
+    console.log('inside weather');
+    $scope.city4  = DataStoreMZ.city4;
+    var latitude4  =  DataStoreMZ.latitude4;
+    var longitude4 = DataStoreMZ.longitude4;
+
+    //call getCurrentWeather method in factory ‘Weather --MZ’
+    Weather.getCurrentWeather(latitude4,longitude4).then(function(resp) {
+      $scope.currentMZ = resp.data;
+      console.log('GOT CURRENT', $scope.currentMZ);
+      //debugger;
+    }, function(error) {
+      alert('Unable to get current conditions');
+      console.error(error);
+    });
+
+
+
+
+
+})
+//========================END Ctrl==========================================
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
