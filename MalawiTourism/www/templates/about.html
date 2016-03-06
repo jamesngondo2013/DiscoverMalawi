@@ -1,12 +1,14 @@
 <ion-view view-title="About Malawi">
-  <ion-content class=" padding">
-      
+  <ion-content class=" padding" ng-repeat="items in allabout">
+    <div>
+       <img class="col button-row text-center" ng-src="{{items.image}}" alt="Photo">
+    </div>
     <div class="list card animated bounceInLeft">
       <div class="item item-divider"><h3>The Warm Heart of Africa</h3></div>
 
       <div class="item item-body">
         <div>
-          There is a fire in <b>sector 3</b>
+          {{items.info}}
         </div>
       </div>
     </div>
@@ -14,24 +16,24 @@
       <div class="item item-divider"><h3>Language</h3></div>
       <div class="item item-body">
         <div>
-          You ate an apple today!
+        {{items.language}}
         </div>
       </div>
     </div>
     <div class="list card animated bounceInLeft">
       <div class="item item-divider"><h3>Lake Malawi</h3></div>
-
       <div class="item item-body">
         <div>
-          There is a fire in <b>sector 3</b>
+          {{items.lake}}
         </div>
       </div>
     </div>
     <div class="list card animated bounceInRight">
+      <div class="item item-divider"><h3>Geography</h3></div>
       <div class="item item-divider"></div>
       <div class="item item-body">
         <div>
-          You ate an apple today!
+          {{items.geography}}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@
     ng-repeat='myMountain in allmountains | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detailsmountain/{{myMountain.$id}}">
-      <img ng-src="img/{{myMountain.shortname}}_nt.jpg" alt="{{ myMountain.name }} Photo">
+        <img ng-src="{{myMountain.image}}" alt="Photo">
       <h3>{{myMountain.name}}</h3>
       <h2>{{myMountain.reknown}}</h2>
       <p>{{myMountain.bio | limitTo: 100}}

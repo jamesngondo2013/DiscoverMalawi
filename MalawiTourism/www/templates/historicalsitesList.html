@@ -9,7 +9,7 @@
     ng-repeat='myHistory in allhistory | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/historicalsitesDetails/{{myHistory.$id}}">
-    <img ng-src="img/{{myHistory.shortname}}_nt.jpg" alt="{{ myHistory.name }} Photo">
+    <img ng-src="{{myHistory.image}}" alt="Photo">
       <h3>{{myHistory.name}}</h3>
       <h2>{{myHistory.reknown}}</h2>
       <p>{{myHistory.bio | limitTo: 100}}

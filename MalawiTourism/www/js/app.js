@@ -188,19 +188,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   })
 
-  //about
-  $stateProvider.state('about', {
-       url: '/about',
-       views: {
-         'tab-about': {
-           templateUrl: 'templates/about.html',
-           controller: "",
-           cache: false
-         }
-       }
-
-     })
-
   //weather
   $stateProvider.state('weather', {
        url: '/weather',
@@ -215,7 +202,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
      })
 
      //=====================================
-     //firebase
+     //accommodation contacts
        $stateProvider.state('contacts', {
             url: '/contacts',
             views: {
@@ -241,6 +228,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
           })
 
+          //travel agents
+            $stateProvider.state('travel', {
+                 url: '/travel',
+                 views: {
+                   'tab-home': {
+                     templateUrl: 'templates/travel.html',
+                     controller: "TravelListController",
+                     cache: false
+                   }
+                 }
+
+               })
+
+               //secure state
+               $stateProvider.state('travel_details', {
+                 url: '/travel_details/:id',
+                 views: {
+                   'tab-home': {
+                     templateUrl: 'templates/travel_details.html',
+                     controller: "TravelDetailsCtrl"
+                   }
+                 }
+
+
+               })
+
 
   //list
     $stateProvider.state('list', {
@@ -252,6 +265,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
 
     })
+
+    $stateProvider.state('about', {
+     url: '/about',
+     views: {
+       'tab-about': {
+         templateUrl: 'templates/about.html',
+         controller: "AboutController",
+         cache: false
+       }
+     }
+
+   })
 
   //edit state
     $stateProvider.state('edit', {
@@ -486,6 +511,27 @@ app.factory('NoteStore', function($firebaseArray, $firebaseObject){
        getAccommodation: function(accommodationId){
           return $firebaseObject(ref.child('accommodation').child(accommodationId));
         },
+
+        //get all travel
+        getAllTravel: function(){
+           return $firebaseArray(ref.child('travel'));
+        },
+
+        //get individual travel
+        getTravel: function(travelId){
+           return $firebaseObject(ref.child('travel').child(travelId));
+         },
+
+         //get all about
+         getAllAbout: function(){
+            return $firebaseArray(ref.child('about'));
+         },
+
+         //get individual travel
+         getAbout: function(aboutId){
+            return $firebaseObject(ref.child('about').child(aboutId));
+          },
+
 
 
     // Notes list
@@ -1013,6 +1059,48 @@ app.controller('AccommodationDetailsCtrl', function($scope, $stateParams, NoteSt
   $scope.accommodation = NoteStore.getAccommodation(accommodationId);
 
 });
+
+//============About Controller====================
+app.controller('AboutController', function($scope, $stateParams, NoteStore){
+
+    $scope.allabout = NoteStore.getAllAbout();
+
+})
+
+
+//============TravelList Controller====================
+app.controller('TravelListController', function($scope, NoteStore){
+  $scope.alltravel = NoteStore.getAllTravel();
+//================
+  $scope.doRefresh =function() {
+    $scope.alltravel = NoteStore.getAllTravel();
+      $scope.places = alltravel;
+      $scope.$broadcast('scroll.refreshComplete');
+
+  }
+
+  $scope.toggleStar = function(item) {
+    item.star = !item.star;
+  }
+
+
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.places.splice(fromIndex, 1);
+    $scope.places.splice(toIndex, 0, item);
+    //NoteStore.move(note, fromIndex, toIndex);
+  };
+})
+
+//================ Travel Details controller=========================
+
+app.controller('TravelDetailsCtrl', function($scope, $stateParams, NoteStore){
+
+  var travelId =  $stateParams.id;
+  $scope.whichplace = travelId;
+  $scope.travel = NoteStore.getTravel(travelId);
+
+});
+
 
 
 //================ Parks Details controller=========================

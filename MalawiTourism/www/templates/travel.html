@@ -1,4 +1,4 @@
-<ion-view view-title="Accommodation Contacts" >
+<ion-view view-title="Travel Agents" >
 
   <ion-header-bar class="bar-subheader">
    </ion-header-bar>
@@ -7,12 +7,11 @@
      class="has-subheader">
      <ion-refresher on-refresh="doRefresh()">
      </ion-refresher>
-     <ion-list show-reorder="allaccommodation.showReorder">
+     <ion-list show-reorder="alltravel.showReorder">
        <ion-item ng-class="{'star': item.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
-       ng-repeat='item in allaccommodation | filter: search'
+       ng-repeat='item in alltravel | filter: search'
        class="item-thumbnail-left item-icon-right
-         item-text-wrap" href="#/contacts_detail/{{item.$id}}">
-         <img ng-src="{{item.image}}" alt="Photo">
+         item-text-wrap" href="#/travel_details/{{item.$id}}">
          <h3>{{item.name}}</h3>
          <h2>{{item.location}}</h2>
          <i class="icon ion-arrow-right-b"></i>
