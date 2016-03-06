@@ -420,9 +420,64 @@ app.factory('DataStoreMZ', function() {
     return DataStoreMZ;
 })
 
+//======================weather Salima ==================================
+app.factory('DataStoreSA', function() {
+    //create datastore with default values
+    var DataStoreSA = {
+
+          city5:       'Salima',
+          latitude5:   -13.7804,
+          longitude5:  34.4587
+
+        };
+
+        DataStoreSA.setCity = function (value) {
+        DataStoreSA.city5 = value;
+    };
+
+       DataStoreSA.setLatitude = function (value) {
+       DataStoreSA.latitude5 = value;
+    };
+
+       DataStoreSA.setLongitude = function (value) {
+       DataStoreSA.longitude5 = value;
+    };
+
+    return DataStoreSA;
+})
+
+//======================weather Mangochi ==================================
+app.factory('DataStoreMH', function() {
+    //create datastore with default values
+    var DataStoreMH = {
+
+          city6:       'Mangochi',
+          latitude6:   -14.47815,
+          longitude6:  35.26448
+
+        };
+
+        DataStoreMH.setCity = function (value) {
+        DataStoreMH.city6 = value;
+    };
+
+       DataStoreMH.setLatitude = function (value) {
+       DataStoreMH.latitude6 = value;
+    };
+
+       DataStoreMH.setLongitude = function (value) {
+       DataStoreMH.longitude6 = value;
+    };
+
+    return DataStoreMH;
+})
+
+
+
+
 
 //==================== factory weather forecastioWeather
-.factory('Weather', forecastioWeather)
+app.factory('Weather', forecastioWeather)
 
 
 //=======================Factory for views sharing the same functions======
@@ -1211,7 +1266,7 @@ app.controller('CityDetailsCtrl', function($scope, $stateParams, NoteStore,$ioni
 
 });
 //============================WeatherCtrl======================================
-app.controller('WeatherCtrl', function($scope,$state,Weather,DataStore,DataStoreBT,DataStoreZA,DataStoreMZ) {
+app.controller('WeatherCtrl', function($scope,$state,Weather,DataStore,DataStoreBT,DataStoreZA,DataStoreMZ,DataStoreMH,DataStoreSA) {
     //read default settings into scope - LL
     console.log('inside weather');
     $scope.city  = DataStore.city;
@@ -1278,8 +1333,38 @@ app.controller('WeatherCtrl', function($scope,$state,Weather,DataStore,DataStore
       console.error(error);
     });
 
+    //=============================================================================
+        //read default settings into scope - SA
+        console.log('inside weather');
+        $scope.city5  = DataStoreSA.city5;
+        var latitude5  =  DataStoreSA.latitude5;
+        var longitude5 = DataStoreSA.longitude5;
 
+        //call getCurrentWeather method in factory ‘Weather --SA’
+        Weather.getCurrentWeather(latitude5,longitude5).then(function(resp) {
+          $scope.currentSA = resp.data;
+          console.log('GOT CURRENT', $scope.currentSA);
+          //debugger;
+        }, function(error) {
+          alert('Unable to get current conditions');
+          console.error(error);
+        });
 
+        //read default settings into scope - MH
+        console.log('inside weather');
+        $scope.city6  = DataStoreMH.city6;
+        var latitude6  =  DataStoreMH.latitude6;
+        var longitude6 = DataStoreMH.longitude6;
+
+        //call getCurrentWeather method in factory ‘Weather --MH’
+        Weather.getCurrentWeather(latitude6,longitude6).then(function(resp) {
+          $scope.currentMH = resp.data;
+          console.log('GOT CURRENT', $scope.currentMH);
+          //debugger;
+        }, function(error) {
+          alert('Unable to get current conditions');
+          console.error(error);
+        });
 
 
 })

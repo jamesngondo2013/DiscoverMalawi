@@ -82,5 +82,45 @@
         </div>
       </div>
     </div>
+  <!--/div-->
+  <div class="list card animated bounceInRight">
+    <div class="item item-divider">
+      <div class="item item-divider">
+         <h3>{{city5}}</h3>
+       </div>
+    </div>
+    <div class="item item-body">
+      <div>
+        <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+           {{currentSA.currently.summary}}</h4>
+      </div>
+      <div>
+          <p>The temperature now is</p>
+      </div>
+      <div>
+          <span class="large">{{currentSA.currently.temperature}} °C </span>
+      </div>
+    </div>
+  </div>
+  <!--/div-->
+  <div class="list card animated bounceInRight">
+    <div class="item item-divider">
+      <div class="item item-divider">
+         <h3>{{city6}}</h3>
+       </div>
+    </div>
+    <div class="item item-body">
+      <div>
+        <h4><weather-icon icon="current.icon" id="current-icon"></weather-icon>
+           {{currentMH.currently.summary}}</h4>
+      </div>
+      <div>
+          <p>The temperature now is</p>
+      </div>
+      <div>
+          <span class="large">{{currentMH.currently.temperature}} °C </span>
+      </div>
+    </div>
+  </div>
   </ion-content>
 </ion-view>

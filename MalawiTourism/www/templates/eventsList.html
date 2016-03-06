@@ -8,7 +8,7 @@
     <ion-item ng-class="{'star': myEvent.star} item-text-wrap item-icon-right chat-item item-avatar item-icon-right"
     ng-repeat='myEvent in allevents | filter: query'
     class="item-thumbnail-left item-icon-right
-      item-text-wrap" href="#/detailsLakeActivities/{{myEvent.$id}}">
+      item-text-wrap" href="#/eventsDetails/{{myEvent.$id}}">
       <img ng-src="{{myEvent.image}}" alt="Photo">
       <h3>{{myEvent.name}}</h3>
       <h2>{{myEvent.reknown}}</h2>
