@@ -6,11 +6,10 @@
        <ion-item class="item-text-wrap">
         <div class="list card">
             <h3>{{ travel.name }}</h3>
-            <a class="item item-icon-left"><i class="icon ion-android-pin"></i>Location<p>{{travel.location}}</p></a>
-            <a class="item item-icon-left"><i class="icon ion-android-call"></i>Call Office<p>{{travel.telephone}}</p></a>
-            <a class="item item-icon-left"><i class="icon ion-android-mail"></i>Email<p>{{travel.email}}</p></a>
-            <a class="item item-icon-left"><i class="icon ion-social-google"></i>Website<p>{{travel.website}}</p></a>
-        </div>
+            <a class="item item-icon-left"><i class="icon ion-android-pin"></i>Location<p>{{accommodation.location}}</p></a>
+            <a href="tel:{{accommodation.telephone}}" class="item item-icon-left"><i class="icon ion-android-call"></i>Call Office<p>{{accommodation.telephone}}</p></a>
+            <a class="item item-icon-left"><i class="icon ion-android-mail"></i>Email<p>{{accommodation.email}}</p></a>
+            <a ng-href="{{accommodation.website}}" target="_self" onclick="window.open(this.href,'_self','location=yes')" class="item item-icon-left"><i class="icon ion-social-google"></i>Website<p>{{accommodation.website}}</p></a>
         </ion-item>
      </ion-list>
 </ion-content>
