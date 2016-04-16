@@ -12,6 +12,7 @@
        ng-repeat='item in alltravel | filter: search'
        class="item-thumbnail-left item-icon-right
          item-text-wrap" href="#/travel_details/{{item.$id}}">
+         <img ng-src="{{item.image}}" alt="Photo">
          <h3>{{item.name}}</h3>
          <h2>{{item.location}}</h2>
          <i class="icon ion-arrow-right-b"></i>

@@ -6,7 +6,7 @@
   </ion-refresher>
   <ion-list show-reorder="alllakes.showReorder">
     <ion-item ng-class=" chat-item item-avatar item-icon-right"
-    ng-repeat='myLake in alllakes | filter: query'
+    ng-repeat='myLake in lakes | filter: query'
     class="item-thumbnail-left item-icon-right
       item-text-wrap" href="#/detailsLakeActivities/{{myLake.$id}}">
       <img ng-src="{{myLake.image}}" alt="Photo">

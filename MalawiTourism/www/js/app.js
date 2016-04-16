@@ -26,9 +26,10 @@
   }];
 
 
-  var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'ngResource']);
-
-  var fb = new Firebase("https://shining-torch-8813.firebaseio.com/");
+  var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'ngResource','ngStorage']);
+            app.config(function($ionicConfigProvider){
+                $ionicConfigProvider.tabs.position('buttom');
+                })
   var ref = new Firebase("https://discovermalawi.firebaseio.com/");
   app.constant('FORECASTIO_KEY', 'b468b50051718710a04b134824010076')
 
@@ -182,7 +183,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'tab-map': {
         templateUrl: 'templates/map.html',
-        controller:'MapCtrl'
+        controller:'MapCtrl',
+        cache: false
       }
     }
 
@@ -483,7 +485,9 @@ app.factory('Weather', forecastioWeather)
 //=======================Factory for views sharing the same functions======
 app.factory('NoteStore', function($firebaseArray, $firebaseObject){
 
+//retrieve notes from local storage
   var notes = angular.fromJson(  window.localStorage['notes'] ||'[]');
+
 // store notes in local storage
     function persist()
     {
@@ -866,11 +870,15 @@ app.controller('MapCtrl', function($scope, $state,$compile) {
 });
 
 //=============================Lake Activities List Controller=============
-app.controller('LakeActivitiesListController', function($scope, NoteStore) {
+app.controller('LakeActivitiesListController', function($scope, $localStorage, NoteStore) {
   $scope.alllakes = NoteStore.getAllLakes();
-//================
+
+   $localStorage.lakeData = NoteStore.getAllLakes();
+
+   $scope.lakes = $localStorage.lakeData;
+
   $scope.doRefresh =function() {
-    $scope.alllakes = NoteStore.getAllLakes();
+  //  $scope.alllakes = NoteStore.getAllLakes();
       $scope.places = alllakes;
       $scope.$broadcast('scroll.refreshComplete');
 
