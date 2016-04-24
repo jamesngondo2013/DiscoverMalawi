@@ -1,0 +1,80 @@
+<div>
+    <button class="btn btn-success pull-right" ng-click="showForm()" ng-hide="addFormShow">Add New Record</button>
+    <button class="btn btn-warning pull-right" ng-click="hideForm()" ng-show="addFormShow">Hide Form</button>
+    <a ng-href="#/register" class="btn btn-warning pull-right">Register New user</a> 
+</div>
+
+<div style="font-size:large">
+        <p  class="text-center">Chichewa English Dictionary</p>
+    
+    <div class="panel-heading">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="active"><a href="#/about">About</a></li>
+        <li ><a href="#/success">Parks</a></li>
+        <li><a href="#/accommodation">Accomodation</a></li>
+        <li><a href="#/cities">Cities </a></li>
+        <li><a href="#/events">Events</a></li>
+        <li><a href="#/historical">Historical</a></li>
+        <li><a href="#/lakes">Lake</a></li>
+        <li><a href="#/mountains">Mountains</a></li>
+        <li><a href="#/dictionary">Word Phrases</a></li>
+        <li><a href="#/travel">Agents</a></li>
+      </ul>
+    </div>
+
+</div>
+ 
+<div class="container">
+   
+        <form name="userForm" ng-submit="addFormSubmit(userForm.$valid)" ng-show="addFormShow" novalidate>
+  
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.english.$invalid && !userForm.english.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="english" placeholder="English" name="english" required />
+            <!--p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Name is required.</p-->
+        </div>
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.chichewa.$invalid && !userForm.chichewa.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="chichewa" placeholder="Chichewa" name="chichewa" required/>
+            <!--p ng-show="userForm.reknown.$invalid && !userForm.reknown.$pristine" class="help-block">Location is required.</p-->
+        </div>
+      
+        <input type="submit" value="Add Words" class="btn btn-default btn btn-primary"/>
+       
+    </form>
+
+    <form ng-submit="editFormSubmit()" ng-show="editFormShow">
+     
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="english" placeholder="English" name="english" required />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="chichewa" placeholder="Chichewa" name="chichewa" required/>
+        </div>
+        <input type="submit" value="Edit Words" class="btn btn-default btn-warning" ng-disabled="userForm.$invalid"/>
+     
+    </form>
+    <div class="panel panel-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <td><h3>English</h3></td>
+                <td><h3>Chichewa</h3></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in dictionary">
+                <td>{{ item.english}}</td>
+                <td>{{ item.chichewa }}</td>
+                
+                <td>
+                    <button class="btn btn-primary" ng-click="showDict(item)" >Edit</button>&nbsp;
+                    <button class="btn btn-danger" ng-click="deleteDict(item)" >Delete</button>
+                    
+                </td>
+            </tr>
+            </tbody>
+        </table>
+       
+    </div>
+   
+</div>
+        

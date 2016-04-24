@@ -1,0 +1,108 @@
+<div>
+    <a ng-href="#/register" class="btn btn-success pull-right">Register New user</a> 
+</div>
+
+<div style="font-size:large">
+        <p  class="text-center">About Malawi</p>
+    
+    <div class="panel-heading">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="active"><a href="#/about">About</a></li>
+        <li ><a href="#/success">Parks</a></li>
+        <li><a href="#/accommodation">Accomodation</a></li>
+        <li><a href="#/cities">Cities </a></li>
+        <li><a href="#/events">Events</a></li>
+        <li><a href="#/historical">Historical</a></li>
+        <li><a href="#/lakes">Lake</a></li>
+        <li><a href="#/mountains">Mountains</a></li>
+        <li><a href="#/dictionary">Word Phrases</a></li>
+        <li><a href="#/travel">Agents</a></li>
+      </ul>
+    </div>
+
+</div>
+ 
+<div class="container">
+   
+        <form name="userForm" ng-submit="addFormSubmit(userForm.$valid)" ng-show="addFormShow" novalidate>
+  
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.info.$invalid && !userForm.info.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="info" placeholder="Info" name="info" required />
+            <!--p ng-show="userForm.geography.$invalid && !userForm.geography.$pristine" class="help-block">Name is required.</p-->
+        </div>
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.geography.$invalid && !userForm.geography.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="geography" placeholder="Geography" name="geography" required />
+            <!--p ng-show="userForm.geography.$invalid && !userForm.geography.$pristine" class="help-block">Name is required.</p-->
+        </div>
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.lake.$invalid && !userForm.lake.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="lake" placeholder="Lake" name="lake" required/>
+            <!--p ng-show="userForm.lake.$invalid && !userForm.lake.$pristine" class="help-block">Location is required.</p-->
+        </div>
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.language.$invalid && !userForm.language.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="language" placeholder="Language" name="language" required/>
+            <!--p ng-show="userForm.language.$invalid && !userForm.language.$pristine" class="help-block">Info is required.</p-->
+        </div>
+        <div class="form-group" ng-class="{&#123; 'has-error' : userForm.image.$invalid && !userForm.image.$pristine && submitted}">
+            <input type="text" class="form-control" ng-model="image" placeholder="Image Path" name="image" required />
+            <!--p ng-show="userForm.image.$invalid && !userForm.image.$pristine" class="help-block">Image is required.</p-->
+        </div>
+      
+        <input type="submit" value="Add About" class="btn btn-default btn btn-primary"/>
+       
+    </form>
+
+    <form ng-submit="editFormSubmit()" ng-show="editFormShow">
+     
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="info" placeholder="Info" name="info" required />
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="geography" placeholder="Geography" name="geography" required/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="lake" placeholder="Lake" name="lake" required/>
+        </div>
+         <div class="form-group">
+            <input type="text" class="form-control" ng-model="language" placeholder="Language" name="language" required/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="image" placeholder="Image Path" name="image" required />
+        </div>
+        
+        <input type="submit" value="Edit About" class="btn btn-default btn-warning" ng-disabled="userForm.$invalid"/>
+        <div>
+            <button class="btn btn-warning" ng-click="hideForm()" ng-show="addFormShow">Hide Form</button>
+        </div>
+     
+    </form>
+    <div class="panel panel-body">
+       <table class="table">
+            <thead>
+            <tr>
+                <td><h3>Info</h3></td>
+                <td><h3>Geography</h3></td>
+                <td><h3>Lake</h3></td>
+                <td><h3>Language</h3></td>
+                <td><h3>Image Path</h3></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in about">
+                <td>{{ item.info}}</td>
+                <td>{{ item.geography }}</td>
+                <td>{{ item.lake }}</td>
+                <td>{{item.language}}</td>
+                <td>{{item.image}}</td>
+                
+                <td>
+                    <button class="btn btn-primary" ng-click="showAbout(item)" >Edit</button>&nbsp;
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+       
+    </div>
+   
+</div>
+        

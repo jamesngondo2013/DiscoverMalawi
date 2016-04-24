@@ -1,0 +1,32 @@
+<section class="card login">
+  <form name="myform"
+    ng-submit="login()"
+    novalidate>
+
+    <div class="textintro">
+      <h1>Hi Admin!</h1>
+      <p class="message"
+        ng-show="message"> {{ message }}</p>
+    </div>
+
+    <fieldset>
+      <input type="email" id="email" name="email" placeholder="Email"
+       ng-model="user.email" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.email.$invalid && myform.email.$touched">
+      Must be a valid email</p>
+
+
+      <input type="password" id="password" name="password" placeholder="Password"
+      ng-model="user.password" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.password.$invalid && myform.email.$touched">
+      Password is required</p>
+
+    </fieldset>
+
+    <button type="submit" class="btn" name="submit"
+      ng-disabled="myform.$invalid">Login</button>
+
+  </form>
+</section>
