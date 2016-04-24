@@ -9,6 +9,7 @@
 ##1. Cross-Platform Tourism App
 
 #### Developed using Ionic Framework, AngularJS and Firebase
+Firebase is the database that has been used in this project. Firebase is a real-time cloud data service and provides an API that stores and syncs data across multiple clients/ devices and it serves millions of users in no time. Firebase database is stored as JSON and synchronized in realtime to every connected client. When you build cross-platform apps with our Android, iOS, and JavaScript SDKs, all of your clients share one Firebase database and automatically receive updates with the newest data.
 
 ![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/startpage.PNG)
 
