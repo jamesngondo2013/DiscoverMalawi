@@ -1,6 +1,12 @@
 # Discover Malawi
 
-## Cross-Platform Tourism App
+## Contents
+##### Cross-Platform Tourism App
+##### Admin Panel - Web Application
+##### Unit Testing
+##### How to run the application
+
+##1. Cross-Platform Tourism App
 
 #### Developed using Ionic Framework, AngularJS and Firebase
 
@@ -10,3 +16,22 @@ Tourists will use this app to find hotels, fun spots to hang out at and look for
 This application will provide a better user experience by taking advantage of newest technologies in order to promote Lake Malawi, mountains, wildlife reserves, cities, hotels, museums and the cultural heritage.
 
 ![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/accomodation.PNG)
+
+##2. Admin Panel - Web Application
+The web application is developed using AngularJS, HTML 5 and CSS. The web app is hosted live on Hosting24.com and can be accessed [here](http://www.technologywolves.com/). The main purpose of the web app is to allow administrators interact with the database (Firebase). All CRUD (create, read, update and delete) operations to the database are performed using this web application and all the changes made to the database using the web app are updated on mobile apps in real-time. 
+
+![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/login.PNG)
+
+Below is the landing page. After a successful login, the admin is redirected to this page where CRUD (create, read, update and delete) operations take place.
+
+![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/success_page.PNG)
+
+##3. Unit Testing
+The admin web application has been tested using Selenium Web Driver - Java unit test.
+
+##4. How to run the Application
+* To run the web application, please click [here](http://www.technologywolves.com/).
+  Username = g00304277@gmit.ie
+  Password = malawi
+
+* The mobile app version runs on android platform. You can download the .apk file provided in the project folder, within this repository and install it on your device. Please ensure that you're connected to internet in order to access all the functionalities of this app. The offline function of this app is under way.
