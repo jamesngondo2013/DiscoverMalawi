@@ -32,7 +32,7 @@ The admin web application has been tested using Selenium Web Driver - Java unit 
 
 ##4. How to run the Application
 * To run the web application, please click [here](http://www.technologywolves.com/).
-  Username = g00304277@gmit.ie
-  Password = malawi
+  **Username** = g00304277@gmit.ie
+  **Password** = malawi
 
-* The mobile app version runs on android platform. You can download the .apk file provided in the project folder, within this repository and install it on your device. Please ensure that you're connected to internet in order to access all the functionalities of this app. The offline function of this app is under way.
+* The mobile app version runs on android platform. You can download **discovermalawi.apk** file provided in the project folder, within this repository and install it on your device. Please ensure that you're connected to internet in order to access all the functionalities of this app. The offline function of this app is under way.
