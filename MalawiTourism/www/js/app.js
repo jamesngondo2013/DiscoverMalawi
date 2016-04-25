@@ -713,7 +713,7 @@ app.controller('MapCtrl', function($scope, $state,$compile) {
        var mapOptions = {
          streetViewControl:true,
          center: lakeMalawi,
-         zoom: 12,
+         zoom: 7,
          mapTypeId: google.maps.MapTypeId.TERRAIN
        };
 
