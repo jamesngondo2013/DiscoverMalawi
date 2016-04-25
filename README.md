@@ -5,6 +5,7 @@
 ##### Admin Panel - Web Application
 ##### Unit Testing
 ##### How to run the application
+##### System UML Diagram
 
 ##1. Cross-Platform Tourism App
 
@@ -36,3 +37,10 @@ The admin web application has been tested using Selenium Web Driver - Java unit 
   **Password** = malawi
 
 * The mobile app version runs on android platform. You can download **discovermalawi.apk** file provided in the project folder, within this repository and install it on your device. Please ensure that you're connected to internet in order to access all the functionalities of this app. The offline function of this app is under way.
+
+##5. System UML Diagram
+Below is the UML diagram that represents a particular functionalities of this system. This is used to describe the relationships among the functionalities and their internal/external controllers.
+
+![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/UseCases.png)
+
+
