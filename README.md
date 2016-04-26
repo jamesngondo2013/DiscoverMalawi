@@ -6,6 +6,7 @@
 ##### Unit Testing
 ##### How to run the application
 ##### System UML Diagram
+##### Video Demo
 
 ##1. Cross-Platform Tourism App
 
@@ -42,5 +43,9 @@ The admin web application has been tested using Selenium Web Driver - Java unit 
 Below is the UML diagram that represents a particular functionalities of this system. This is used to describe the relationships among the functionalities and their internal/external controllers.
 
 ![alt tag](https://github.com/jamesngondo2013/DiscoverMalawi/blob/master/images/UseCases.png)
+
+##6. Video Demo
+To watch a video demo for this project, please click on this [link](https://www.youtube.com/watch?v=91woXPAp_jM)
+
 
 
